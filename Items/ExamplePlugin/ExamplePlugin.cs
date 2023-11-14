@@ -1,8 +1,6 @@
 using BepInEx;
-using EntityStates.Treebot.Weapon;
 using R2API;
 using RoR2;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
@@ -31,7 +29,7 @@ namespace ExamplePlugin
     // BaseUnityPlugin itself inherits from MonoBehaviour,
     // so you can use this as a reference for what you can declare and use in your plugin class
     // More information in the Unity Docs: https://docs.unity3d.com/ScriptReference/MonoBehaviour.html
-    public class Item2 : BaseUnityPlugin
+    public class ExamplePlugin : BaseUnityPlugin
     {
         // The Plugin GUID should be a unique ID for this plugin,
         // which is human readable (as it is used in places like the config).
@@ -39,8 +37,8 @@ namespace ExamplePlugin
         // we will deprecate this mod.
         // Change the PluginAuthor and the PluginName !
         public const string PluginGUID = PluginAuthor + "." + PluginName;
-        public const string PluginAuthor = "Lipo";
-        public const string PluginName = "BulletExtravaganza";
+        public const string PluginAuthor = "AuthorName";
+        public const string PluginName = "ExamplePlugin";
         public const string PluginVersion = "1.0.0";
 
         // We need our item definition to persist through our functions, and therefore make it a class field.
@@ -56,18 +54,17 @@ namespace ExamplePlugin
             myItemDef = ScriptableObject.CreateInstance<ItemDef>();
 
             // Language Tokens, explained there https://risk-of-thunder.github.io/R2Wiki/Mod-Creation/Assets/Localization/
-            myItemDef.name = "BULLET_NAME";
-            myItemDef.nameToken = "Bullet Extravaganza";
-            myItemDef.pickupToken = "Receive a massive dose of attack speed. Overall damage reduced.";
-            myItemDef.descriptionToken = "BULLET_DESC";
-            myItemDef.loreToken = "BULLET_LORE";
+            myItemDef.name = "EXAMPLE_CLOAKONKILL_NAME";
+            myItemDef.nameToken = "EXAMPLE_CLOAKONKILL_NAME";
+            myItemDef.pickupToken = "EXAMPLE_CLOAKONKILL_PICKUP";
+            myItemDef.descriptionToken = "EXAMPLE_CLOAKONKILL_DESC";
+            myItemDef.loreToken = "EXAMPLE_CLOAKONKILL_LORE";
 
             // The tier determines what rarity the item is:
             // Tier1=white, Tier2=green, Tier3=red, Lunar=Lunar, Boss=yellow,
             // and finally NoTier is generally used for helper items, like the tonic affliction
 #pragma warning disable Publicizer001 // Accessing a member that was not originally public. Here we ignore this warning because with how this example is setup we are forced to do this
-            myItemDef.tier = ItemTier.Lunar;
-            //ItemDef._itemTierDef = Addressables.LoadAssetAsync<ItemTierDef>("RoR2/Base/Common/LunarDef.asset").WaitForCompletion();
+            myItemDef._itemTierDef = Addressables.LoadAssetAsync<ItemTierDef>("RoR2/Base/Common/Tier2Def.asset").WaitForCompletion();
 #pragma warning restore Publicizer001
             // Instead of loading the itemtierdef directly, you can also do this like below as a workaround
             // myItemDef.deprecatedTier = ItemTier.Tier2;
@@ -98,81 +95,58 @@ namespace ExamplePlugin
             ItemAPI.Add(new CustomItem(myItemDef, displayRules));
 
             // But now we have defined an item, but it doesn't do anything yet. So we'll need to define that ourselves.
-            // GlobalEventManager.onCharacterDeathGlobal += GlobalEventManager_onCharacterDeathGlobal;
-            GlobalEventManager.onServerDamageDealt += GlobalEventManager_onServerDamageDealt;
+            //GlobalEventManager.onCharacterDeathGlobal += GlobalEventManager_onCharacterDeathGlobal;
+
+            GlobalEventManager.onCharacterLevelUp += GlobalEventManager_onCharacterLevelUp;
         }
 
-        //tentar adicionar stack a cada dano que o inimigo recebe, com um cap na quantidade de item
-        private void GlobalEventManager_onServerDamageDealt(DamageReport report)
+        private void GlobalEventManager_onCharacterLevelUp(CharacterBody body)
         {
-            if (!report.attacker || !report.attackerBody)
+            
+            if (body.inventory)
             {
-                return;
-            }
+                var count = body.inventory.GetItemCount(myItemDef.itemIndex);
 
-            var attackerCharacterBody = report.attackerBody;
-            var damage = attackerCharacterBody.damage;
-            var attackSpeed = attackerCharacterBody.attackSpeed;
-            var armor = attackerCharacterBody.armor;
-
-            if (attackerCharacterBody.inventory)
-            {
-                var count = attackerCharacterBody.inventory.GetItemCount(myItemDef.itemIndex);
-
-                if (count > 0 && count < 5)
+                if (count > 0)
                 {
-                    //1 BuffIndex e 2 float
-                    //attackerCharacterBody.AddTimedBuff();
-                    attackerCharacterBody.attackSpeed = attackSpeed + (6 * count);
-                    attackerCharacterBody.damage = damage / 9 * count;
-                }
-                else if (count > 5){
-                    //checar depois pra ver se ta funcionando
-                    attackerCharacterBody.attackSpeed = (attackSpeed + (10 * count))/2 * count;
-                    attackerCharacterBody.damage = damage / 15 * count;
-                }
+                    body.AddBuff(RoR2Content.Buffs.AffixEcho);
+                } 
             }
         }
 
-      // private void GlobalEventManager_onCharacterDeathGlobal(DamageReport report)
-       // {
-            // If a character was killed by the world, we shouldn't do anything.
-          //  if (!report.attacker || !report.attackerBody)
-           // {
-             //   return;
-           // }
+        //private void GlobalEventManager_onCharacterDeathGlobal(DamageReport report)
+        //{
+        //    // If a character was killed by the world, we shouldn't do anything.
+        //    if (!report.attacker || !report.attackerBody)
+        //    {
+        //        return;
+        //    }
 
-          //  var attackerCharacterBody = report.attackerBody;
+        //    var attackerCharacterBody = report.attackerBody;
 
-            // We need an inventory to do check for our item
-           // if (attackerCharacterBody.inventory)
-           // {
-                // Store the amount of our item we have
-             //   var garbCount = attackerCharacterBody.inventory.GetItemCount(myItemDef.itemIndex);
-             //   var duration = 2 + garbCount;
-             //   if (garbCount > 0 && garbCount < 4 &&
-                    // Roll for our 50% chance.
-             //       Util.CheckRoll(50 + (5 * garbCount), attackerCharacterBody.master))
-              //  {
-                    // Since we passed all checks, we now give our attacker the cloaked buff.
-                    // Note how we are scaling the buff duration depending on the number of the custom item in our inventory.
-               //     attackerCharacterBody.AddTimedBuff(RoR2Content.Buffs.TonicBuff,duration + garbCount);
-               //     attackerCharacterBody.AddTimedBuff(RoR2Content.Buffs.DeathMark, duration + garbCount);
-               // }
-             //   else if (garbCount > 4 &&
-             //       Util.CheckRoll(65 + garbCount, attackerCharacterBody.master))
-             //   {
-             //       attackerCharacterBody.AddTimedBuff(RoR2Content.Buffs.TonicBuff, duration + garbCount);
-             //       attackerCharacterBody.AddTimedBuff(RoR2Content.Buffs.DeathMark, duration + garbCount);
-            //    }
-          //  }
-      //  }
+        //    // We need an inventory to do check for our item
+        //    if (attackerCharacterBody.inventory)
+        //    {
+        //        // Store the amount of our item we have
+        //        var garbCount = attackerCharacterBody.inventory.GetItemCount(myItemDef.itemIndex);
+        //        if (garbCount > 0 &&
+        //            // Roll for our 50% chance.
+        //            Util.CheckRoll(50, attackerCharacterBody.master))
+        //        {
+        //            // Since we passed all checks, we now give our attacker the cloaked buff.
+        //            // Note how we are scaling the buff duration depending on the number of the custom item in our inventory.
+        //            attackerCharacterBody.AddTimedBuff(RoR2Content.Buffs.Cloak, 3 + garbCount);
+        //        }
+        //    }
+        //}
+
+
 
         // The Update() method is run on every frame of the game.
         private void Update()
         {
             // This if statement checks if the player has currently pressed F2.
-            if (Input.GetKeyDown(KeyCode.F4))
+            if (Input.GetKeyDown(KeyCode.F3))
             {
                 // Get the player body to use a position:
                 var transform = PlayerCharacterMasterController.instances[0].master.GetBodyObject().transform;

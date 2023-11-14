@@ -1,4 +1,4 @@
-using BepInEx;
+﻿using BepInEx;
 using R2API;
 using RoR2;
 using UnityEngine;
@@ -29,7 +29,8 @@ namespace ExamplePlugin
     // BaseUnityPlugin itself inherits from MonoBehaviour,
     // so you can use this as a reference for what you can declare and use in your plugin class
     // More information in the Unity Docs: https://docs.unity3d.com/ScriptReference/MonoBehaviour.html
-    public class ExamplePlugin : BaseUnityPlugin
+
+    public class Item4 : BaseUnityPlugin
     {
         // The Plugin GUID should be a unique ID for this plugin,
         // which is human readable (as it is used in places like the config).
@@ -97,17 +98,49 @@ namespace ExamplePlugin
             // But now we have defined an item, but it doesn't do anything yet. So we'll need to define that ourselves.
             //GlobalEventManager.onCharacterDeathGlobal += GlobalEventManager_onCharacterDeathGlobal;
 
-            GlobalEventManager.onCharacterLevelUp += GlobalEventManager_onCharacterLevelUp;
+            GlobalEventManager.onServerDamageDealt += GlobalEventManager_onServerDamageDealt;
+            CharacterBody.onBodyInventoryChangedGlobal += CharacterBody_onBodyInventoryChangedGlobal;
         }
 
-        private void GlobalEventManager_onCharacterLevelUp(CharacterBody body)
+        private void GlobalEventManager_onServerDamageDealt(DamageReport report)
         {
-            if (body.inventory)
+
+            if (!report.attacker || !report.attackerBody)
             {
-                var count = body.inventory.GetItemCount(myItemDef.itemIndex);
-                if (count > 0)
+                return;
+            }
+
+            var attackerCharacterBody = report.attackerBody;
+
+            if (attackerCharacterBody.inventory)
+            {
+                var count = attackerCharacterBody.inventory.GetItemCount(myItemDef.itemIndex);
+
+                if (count < 14 &&
+                    Util.CheckRoll(7*count,attackerCharacterBody.master))
+                {
+                    if (report.attacker || report.attackerBody)
+                    {
+                        
+                    }
+                }
             }
         }
+
+        private void CharacterBody_onBodyInventoryChangedGlobal(CharacterBody body)
+        {
+            if (body)
+            {
+                var count = body.inventory.GetItemCount(myItemDef.itemIndex);
+                var speed = body.moveSpeed;
+
+                if (count < 10)
+                {
+                    body.moveSpeed += speed + (count / 2);
+                }
+            }
+        }
+
 
         //private void GlobalEventManager_onCharacterDeathGlobal(DamageReport report)
         //{
