@@ -102,6 +102,7 @@ namespace ExamplePlugin
             GlobalEventManager.onServerDamageDealt += GlobalEventManager_onServerDamageDealt;
         }
 
+        //tentar adicionar stack a cada dano que o inimigo recebe, com um cap na quantidade de item
         private void GlobalEventManager_onServerDamageDealt(DamageReport report)
         {
             if (!report.attacker || !report.attackerBody)
