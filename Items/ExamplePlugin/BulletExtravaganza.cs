@@ -99,82 +99,93 @@ namespace ExamplePlugin
 
             // But now we have defined an item, but it doesn't do anything yet. So we'll need to define that ourselves.
             // GlobalEventManager.onCharacterDeathGlobal += GlobalEventManager_onCharacterDeathGlobal;
+            CharacterBody.onBodyInventoryChangedGlobal += CharacterBody_onBodyInventoryChangedGlobal;
             GlobalEventManager.onServerDamageDealt += GlobalEventManager_onServerDamageDealt;
         }
 
         //tentar adicionar stack a cada dano que o inimigo recebe, com um cap na quantidade de item
         private void GlobalEventManager_onServerDamageDealt(DamageReport report)
         {
-            var reportCount = 0;
+           
 
             if (!report.attacker || !report.attackerBody)
             {
                 return;
             }
-            else if (report.attacker || report.attackerBody)
-            {
-                reportCount += 1;
-            }
+            
 
             var attackerCharacterBody = report.attackerBody;
-            var damage = attackerCharacterBody.damage;
-            var attackSpeed = attackerCharacterBody.attackSpeed;
-            var armor = attackerCharacterBody.armor;
 
             if (attackerCharacterBody.inventory)
             {
                 var count = attackerCharacterBody.inventory.GetItemCount(myItemDef.itemIndex);
 
 
-
                 if (count > 0 && count < 5)
                 {
                     //1 BuffIndex e 2 float
                     //attackerCharacterBody.AddTimedBuff(RoR2Content.Buffs.)
-                    attackerCharacterBody.attackSpeed = (attackSpeed + (2 * count)) * reportCount;
-                    attackerCharacterBody.damage = damage / 9 * count;
+                    attackerCharacterBody.attackSpeed += (1 * count);
                 }
                 else if (count > 5){
-                    //checar depois pra ver se ta funcionando
-                    attackerCharacterBody.attackSpeed = (attackSpeed + (5 * count)) * reportCount;
-                    attackerCharacterBody.damage = damage / 15 * count;
+                    
+                    attackerCharacterBody.attackSpeed += (2 * count);
                 }
             }
         }
 
-      // private void GlobalEventManager_onCharacterDeathGlobal(DamageReport report)
-       // {
-            // If a character was killed by the world, we shouldn't do anything.
-          //  if (!report.attacker || !report.attackerBody)
-           // {
-             //   return;
-           // }
+        //Checar depois porque dano nao ta diminuindo
+        private void CharacterBody_onBodyInventoryChangedGlobal(CharacterBody body)
+        {
+            if (body)
+            {
+                var count = body.inventory.GetItemCount(myItemDef.itemIndex);
+                var damage = body.damage;
 
-          //  var attackerCharacterBody = report.attackerBody;
+                if (count < 5)
+                {
+                    body.damage += damage / 1 + count;
+                }
+                else if (count > 5)
+                {
+                    body.damage += damage / (1 + count) * 2;
+                }
+            }
+        }
 
-            // We need an inventory to do check for our item
-           // if (attackerCharacterBody.inventory)
-           // {
-                // Store the amount of our item we have
-             //   var garbCount = attackerCharacterBody.inventory.GetItemCount(myItemDef.itemIndex);
-             //   var duration = 2 + garbCount;
-             //   if (garbCount > 0 && garbCount < 4 &&
-                    // Roll for our 50% chance.
-             //       Util.CheckRoll(50 + (5 * garbCount), attackerCharacterBody.master))
-              //  {
-                    // Since we passed all checks, we now give our attacker the cloaked buff.
-                    // Note how we are scaling the buff duration depending on the number of the custom item in our inventory.
-               //     attackerCharacterBody.AddTimedBuff(RoR2Content.Buffs.TonicBuff,duration + garbCount);
-               //     attackerCharacterBody.AddTimedBuff(RoR2Content.Buffs.DeathMark, duration + garbCount);
-               // }
-             //   else if (garbCount > 4 &&
-             //       Util.CheckRoll(65 + garbCount, attackerCharacterBody.master))
-             //   {
-             //       attackerCharacterBody.AddTimedBuff(RoR2Content.Buffs.TonicBuff, duration + garbCount);
-             //       attackerCharacterBody.AddTimedBuff(RoR2Content.Buffs.DeathMark, duration + garbCount);
-            //    }
-          //  }
-      //  }
+        // private void GlobalEventManager_onCharacterDeathGlobal(DamageReport report)
+        // {
+        // If a character was killed by the world, we shouldn't do anything.
+        //  if (!report.attacker || !report.attackerBody)
+        // {
+        //   return;
+        // }
+
+        //  var attackerCharacterBody = report.attackerBody;
+
+        // We need an inventory to do check for our item
+        // if (attackerCharacterBody.inventory)
+        // {
+        // Store the amount of our item we have
+        //   var garbCount = attackerCharacterBody.inventory.GetItemCount(myItemDef.itemIndex);
+        //   var duration = 2 + garbCount;
+        //   if (garbCount > 0 && garbCount < 4 &&
+        // Roll for our 50% chance.
+        //       Util.CheckRoll(50 + (5 * garbCount), attackerCharacterBody.master))
+        //  {
+        // Since we passed all checks, we now give our attacker the cloaked buff.
+        // Note how we are scaling the buff duration depending on the number of the custom item in our inventory.
+        //     attackerCharacterBody.AddTimedBuff(RoR2Content.Buffs.TonicBuff,duration + garbCount);
+        //     attackerCharacterBody.AddTimedBuff(RoR2Content.Buffs.DeathMark, duration + garbCount);
+        // }
+        //   else if (garbCount > 4 &&
+        //       Util.CheckRoll(65 + garbCount, attackerCharacterBody.master))
+        //   {
+        //       attackerCharacterBody.AddTimedBuff(RoR2Content.Buffs.TonicBuff, duration + garbCount);
+        //       attackerCharacterBody.AddTimedBuff(RoR2Content.Buffs.DeathMark, duration + garbCount);
+        //    }
+        //  }
+        //  }
 
         // The Update() method is run on every frame of the game.
         private void Update()

@@ -29,7 +29,7 @@ namespace ExamplePlugin
     // BaseUnityPlugin itself inherits from MonoBehaviour,
     // so you can use this as a reference for what you can declare and use in your plugin class
     // More information in the Unity Docs: https://docs.unity3d.com/ScriptReference/MonoBehaviour.html
-    public class ExamplePlugin : BaseUnityPlugin
+    public class MothJuice : BaseUnityPlugin
     {
         // The Plugin GUID should be a unique ID for this plugin,
         // which is human readable (as it is used in places like the config).
@@ -38,7 +38,7 @@ namespace ExamplePlugin
         // Change the PluginAuthor and the PluginName !
         public const string PluginGUID = PluginAuthor + "." + PluginName;
         public const string PluginAuthor = "AuthorName";
-        public const string PluginName = "ExamplePlugin";
+        public const string PluginName = "MothJuice";
         public const string PluginVersion = "1.0.0";
 
         // We need our item definition to persist through our functions, and therefore make it a class field.
@@ -54,11 +54,11 @@ namespace ExamplePlugin
             myItemDef = ScriptableObject.CreateInstance<ItemDef>();
 
             // Language Tokens, explained there https://risk-of-thunder.github.io/R2Wiki/Mod-Creation/Assets/Localization/
-            myItemDef.name = "EXAMPLE_CLOAKONKILL_NAME";
-            myItemDef.nameToken = "EXAMPLE_CLOAKONKILL_NAME";
-            myItemDef.pickupToken = "EXAMPLE_CLOAKONKILL_PICKUP";
-            myItemDef.descriptionToken = "EXAMPLE_CLOAKONKILL_DESC";
-            myItemDef.loreToken = "EXAMPLE_CLOAKONKILL_LORE";
+            myItemDef.name = "MOTH_NAME";
+            myItemDef.nameToken = "Moth Juice";
+            myItemDef.pickupToken = "When levelling up receive a massive buff.";
+            myItemDef.descriptionToken = "MOTH_DESC";
+            myItemDef.loreToken = "MOTH_LORE";
 
             // The tier determines what rarity the item is:
             // Tier1=white, Tier2=green, Tier3=red, Lunar=Lunar, Boss=yellow,
@@ -109,7 +109,7 @@ namespace ExamplePlugin
 
                 if (count > 0)
                 {
-                    body.AddBuff(RoR2Content.Buffs.AffixEcho);
+                    body.AddTimedBuff(RoR2Content.Buffs.NoCooldowns, 6 + (4 * count), count);
                 } 
             }
         }

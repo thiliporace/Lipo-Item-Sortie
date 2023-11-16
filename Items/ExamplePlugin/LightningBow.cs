@@ -30,7 +30,7 @@ namespace ExamplePlugin
     // so you can use this as a reference for what you can declare and use in your plugin class
     // More information in the Unity Docs: https://docs.unity3d.com/ScriptReference/MonoBehaviour.html
 
-    public class Item4 : BaseUnityPlugin
+    public class LightningBow : BaseUnityPlugin
     {
         // The Plugin GUID should be a unique ID for this plugin,
         // which is human readable (as it is used in places like the config).
@@ -39,7 +39,7 @@ namespace ExamplePlugin
         // Change the PluginAuthor and the PluginName !
         public const string PluginGUID = PluginAuthor + "." + PluginName;
         public const string PluginAuthor = "AuthorName";
-        public const string PluginName = "ExamplePlugin";
+        public const string PluginName = "LightningBow";
         public const string PluginVersion = "1.0.0";
 
         // We need our item definition to persist through our functions, and therefore make it a class field.
@@ -55,11 +55,11 @@ namespace ExamplePlugin
             myItemDef = ScriptableObject.CreateInstance<ItemDef>();
 
             // Language Tokens, explained there https://risk-of-thunder.github.io/R2Wiki/Mod-Creation/Assets/Localization/
-            myItemDef.name = "EXAMPLE_CLOAKONKILL_NAME";
-            myItemDef.nameToken = "EXAMPLE_CLOAKONKILL_NAME";
-            myItemDef.pickupToken = "EXAMPLE_CLOAKONKILL_PICKUP";
-            myItemDef.descriptionToken = "EXAMPLE_CLOAKONKILL_DESC";
-            myItemDef.loreToken = "EXAMPLE_CLOAKONKILL_LORE";
+            myItemDef.name = "BOW_NAME";
+            myItemDef.nameToken = "Lightning Bow";
+            myItemDef.pickupToken = "Grants a small boost to crit chance and movespeed.";
+            myItemDef.descriptionToken = "BOW_DESC";
+            myItemDef.loreToken = "BOW_LORE";
 
             // The tier determines what rarity the item is:
             // Tier1=white, Tier2=green, Tier3=red, Lunar=Lunar, Boss=yellow,
@@ -121,7 +121,7 @@ namespace ExamplePlugin
                 {
                     if (report.attacker || report.attackerBody)
                     {
-                        
+                        attackerCharacterBody.critMultiplier = 7 * count;
                     }
                 }
             }
@@ -174,7 +174,7 @@ namespace ExamplePlugin
         private void Update()
         {
             // This if statement checks if the player has currently pressed F2.
-            if (Input.GetKeyDown(KeyCode.F3))
+            if (Input.GetKeyDown(KeyCode.F5))
             {
                 // Get the player body to use a position:
                 var transform = PlayerCharacterMasterController.instances[0].master.GetBodyObject().transform;

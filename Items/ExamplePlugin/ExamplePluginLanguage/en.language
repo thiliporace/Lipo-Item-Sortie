@@ -1,16 +1,19 @@
 {
   "strings": {
+
+    //[LUNAR]
     "TONIC_JAR_NAME": "FALLBACK DEFAULT LANGUAGE Tonic Jar",
     "TONIC_JAR_TOKEN": "FALLBACK DEFAULT LANGUAGE Tonic Jar",
-    "TONIC_JAR_PICKUP": "FALLBACK DEFAULT LANGUAGE Chance to cloak on kill",
-    "TONIC_JAR_DESC": "FALLBACK DEFAULT LANGUAGE Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
-    "TONIC_JAR_LORE": "FALLBACK DEFAULT LANGUAGE Those who visit in the night are either praying for a favour, or preying on a neighbour.",
+    "TONIC_JAR_PICKUP": "FALLBACK DEFAULT LANGUAGE On kill, receive the Tonic Buff. However, during its duration all healing is disabled",
+    "TONIC_JAR_DESC": "FALLBACK DEFAULT LANGUAGE On kill, receive the Tonic Buff. However, during its duration all healing is disabled",
+    "TONIC_JAR_LORE": "FALLBACK DEFAULT LANGUAGE TONIC_JAR_LORE",
 
+    //[TIER4(RED)]
     "BULLET_NAME": "FALLBACK DEFAULT LANGUAGE Bullet Extravaganza",
     "BULLET_TOKEN": "FALLBACK DEFAULT LANGUAGE Bullet Extravaganza",
-    "BULLET_PICKUP": "FALLBACK DEFAULT LANGUAGE Chance to cloak on kill",
-    "BULLET_DESC": "FALLBACK DEFAULT LANGUAGE Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
-    "BULLET_LORE": "FALLBACK DEFAULT LANGUAGE Those who visit in the night are either praying for a favour, or preying on a neighbour.",
+    "BULLET_PICKUP": "FALLBACK DEFAULT LANGUAGE On kill, receive the Tonic Buff. However, during its duration all healing is disabled",
+    "BULLET_DESC": "FALLBACK DEFAULT LANGUAGE On kill, receive the Tonic Buff. However, during its duration all healing is disabled",
+    "BULLET_LORE": "FALLBACK DEFAULT LANGUAGE TONIC_JAR_LORE",
 
     "MOTH_NAME": "FALLBACK DEFAULT LANGUAGE Moth Juice",
     "MOTH_TOKEN": "FALLBACK DEFAULT LANGUAGE Moth Juice",
@@ -23,21 +26,21 @@
     "BOW_PICKUP": "FALLBACK DEFAULT LANGUAGE Grants a small boost to crit chance and movespeed.",
     "BOW_DESC": "FALLBACK DEFAULT LANGUAGE Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
     "BOW_LORE": "FALLBACK DEFAULT LANGUAGE Those who visit in the night are either praying for a favour, or preying on a neighbour."
-
   },
-
   "en": {
+    //[LUNAR]
     "TONIC_JAR_NAME": "ENGLISH Tonic Jar",
     "TONIC_JAR_TOKEN": "ENGLISH Tonic Jar",
-    "TONIC_JAR_PICKUP": "ENGLISH Chance to cloak on kill",
-    "TONIC_JAR_DESC": "ENGLISH Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
-    "TONIC_JAR_LORE": "ENGLISH Those who visit in the night are either praying for a favour, or preying on a neighbour.",
+    "TONIC_JAR_PICKUP": "ENGLISH On kill, receive the Tonic Buff. However, during its duration all healing is disabled",
+    "TONIC_JAR_DESC": "ENGLISH On kill, receive the Tonic Buff. However, during its duration all healing is disabled",
+    "TONIC_JAR_LORE": "ENGLISH TONIC_JAR_LORE",
 
+    //[TIER4(RED)]
     "BULLET_NAME": "ENGLISH Bullet Extravaganza",
     "BULLET_TOKEN": "ENGLISH Bullet Extravaganza",
-    "BULLET_PICKUP": "ENGLISH Chance to cloak on kill",
-    "BULLET_DESC": "ENGLISH Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
-    "BULLET_LORE": "ENGLISH Those who visit in the night are either praying for a favour, or preying on a neighbour.",
+    "BULLET_PICKUP": "ENGLISH On kill, receive the Tonic Buff. However, during its duration all healing is disabled",
+    "BULLET_DESC": "ENGLISH On kill, receive the Tonic Buff. However, during its duration all healing is disabled",
+    "BULLET_LORE": "ENGLISH TONIC_JAR_LORE",
 
     "MOTH_NAME": "ENGLISH Moth Juice",
     "MOTH_TOKEN": "ENGLISH Moth Juice",
