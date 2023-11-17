@@ -6,11 +6,6 @@ using UnityEngine.AddressableAssets;
 
 namespace ExamplePlugin
 {
-    // This is an example plugin that can be put in
-    // BepInEx/plugins/ExamplePlugin/ExamplePlugin.dll to test out.
-    // It's a small plugin that adds a relatively simple item to the game,
-    // and gives you that item whenever you press F2.
-
     // This attribute specifies that we have a dependency on a given BepInEx Plugin,
     // We need the R2API ItemAPI dependency because we are using for adding our item to the game.
     // You don't need this if you're not using R2API in your plugin,
@@ -37,7 +32,7 @@ namespace ExamplePlugin
         // we will deprecate this mod.
         // Change the PluginAuthor and the PluginName !
         public const string PluginGUID = PluginAuthor + "." + PluginName;
-        public const string PluginAuthor = "AuthorName";
+        public const string PluginAuthor = "Lipo";
         public const string PluginName = "MothJuice";
         public const string PluginVersion = "1.0.0";
 

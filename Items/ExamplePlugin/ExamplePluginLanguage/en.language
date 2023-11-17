@@ -15,12 +15,14 @@
     "BULLET_DESC": "FALLBACK DEFAULT LANGUAGE On kill, receive the Tonic Buff. However, during its duration all healing is disabled",
     "BULLET_LORE": "FALLBACK DEFAULT LANGUAGE TONIC_JAR_LORE",
 
+    //[TIER 2]
     "MOTH_NAME": "FALLBACK DEFAULT LANGUAGE Moth Juice",
     "MOTH_TOKEN": "FALLBACK DEFAULT LANGUAGE Moth Juice",
     "MOTH_PICKUP": "FALLBACK DEFAULT LANGUAGE When levelling up receive a massive buff.",
     "MOTH_DESC": "FALLBACK DEFAULT LANGUAGE Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
     "MOTH_LORE": "FALLBACK DEFAULT LANGUAGE Those who visit in the night are either praying for a favour, or preying on a neighbour.",
 
+    //[TIER 1]
     "BOW_NAME": "FALLBACK DEFAULT LANGUAGE Lightning Bow",
     "BOW_TOKEN": "FALLBACK DEFAULT LANGUAGE Lightning Bow",
     "BOW_PICKUP": "FALLBACK DEFAULT LANGUAGE Grants a small boost to crit chance and movespeed.",
@@ -42,15 +44,17 @@
     "BULLET_DESC": "ENGLISH On kill, receive the Tonic Buff. However, during its duration all healing is disabled",
     "BULLET_LORE": "ENGLISH TONIC_JAR_LORE",
 
+    //[TIER 2]
     "MOTH_NAME": "ENGLISH Moth Juice",
     "MOTH_TOKEN": "ENGLISH Moth Juice",
     "MOTH_PICKUP": "ENGLISH When levelling up receive a massive buff.",
     "MOTH_DESC": "ENGLISH Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
     "MOTH_LORE": "ENGLISH Those who visit in the night are either praying for a favour, or preying on a neighbour.",
 
+    //[TIER 1]
     "BOW_NAME": "ENGLISH Lightning Bow",
     "BOW_TOKEN": "ENGLISH Lightning Bow",
-    "BOW_PICKUP": "ENGLISHGrants a small boost to crit chance and movespeed.",
+    "BOW_PICKUP": "ENGLISH Grants a small boost to crit chance and movespeed.",
     "BOW_DESC": "ENGLISH Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
     "BOW_LORE": "ENGLISH Those who visit in the night are either praying for a favour, or preying on a neighbour."
   }
