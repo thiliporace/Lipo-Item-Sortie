@@ -8,6 +8,7 @@ namespace ExamplePlugin
 {
     [BepInDependency(ItemAPI.PluginGUID)]
     [BepInDependency(LanguageAPI.PluginGUID)]
+
     [BepInPlugin(PluginGUID, PluginName, PluginVersion)]
 
     // This is the main declaration of our plugin class.

@@ -5,6 +5,7 @@ using RoR2;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using static R2API.RecalculateStatsAPI;
 
 namespace ExamplePlugin
 {
@@ -17,6 +18,8 @@ namespace ExamplePlugin
     // This one is because we use a .language file for language tokens
     // More info in https://risk-of-thunder.github.io/R2Wiki/Mod-Creation/Assets/Localization/
     [BepInDependency(LanguageAPI.PluginGUID)]
+
+    [BepInDependency(RecalculateStatsAPI.PluginGUID)]
 
     // This attribute is required, and lists metadata for your plugin.
     [BepInPlugin(PluginGUID, PluginName, PluginVersion)]
@@ -95,8 +98,8 @@ namespace ExamplePlugin
 
             // But now we have defined an item, but it doesn't do anything yet. So we'll need to define that ourselves.
             // GlobalEventManager.onCharacterDeathGlobal += GlobalEventManager_onCharacterDeathGlobal;
-            CharacterBody.onBodyInventoryChangedGlobal += CharacterBody_onBodyInventoryChangedGlobal;
             GlobalEventManager.onServerDamageDealt += GlobalEventManager_onServerDamageDealt;
+            RecalculateStatsAPI.GetStatCoefficients += ReduceDamage;
         }
 
         //tentar adicionar stack a cada dano que o inimigo recebe, com um cap na quantidade de item
@@ -130,24 +133,26 @@ namespace ExamplePlugin
             }
         }
 
-        //Checar depois porque dano nao ta diminuindo
-        private void CharacterBody_onBodyInventoryChangedGlobal(CharacterBody body)
+        private void ReduceDamage(CharacterBody sender, StatHookEventArgs args)
         {
-            if (body)
+            var inventory = sender.inventory;
+
+            if (inventory)
             {
-                var count = body.inventory.GetItemCount(myItemDef.itemIndex);
-                var damage = body.damage;
+                var count = inventory.GetItemCount(myItemDef.itemIndex);
 
                 if (count < 5)
                 {
-                    body.damage += damage / 1 + count;
+                    args.baseDamageAdd -= 1 * count;
                 }
                 else if (count > 5)
                 {
-                    body.damage += damage / (1 + count) * 2;
+                    args.baseDamageAdd -= 1 + (count * 2);
                 }
             }
         }
+
+
 
         // private void GlobalEventManager_onCharacterDeathGlobal(DamageReport report)
         // {

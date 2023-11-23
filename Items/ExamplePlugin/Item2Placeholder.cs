@@ -16,7 +16,7 @@ namespace ExamplePlugin
     // This one is because we use a .language file for language tokens
     // More info in https://risk-of-thunder.github.io/R2Wiki/Mod-Creation/Assets/Localization/
     [BepInDependency(LanguageAPI.PluginGUID)]
-    
+
     //Recalculate Stats API is used for changing stat modifiers in a character
     [BepInDependency(RecalculateStatsAPI.PluginGUID)]
 
@@ -29,7 +29,7 @@ namespace ExamplePlugin
     // so you can use this as a reference for what you can declare and use in your plugin class
     // More information in the Unity Docs: https://docs.unity3d.com/ScriptReference/MonoBehaviour.html
 
-    public class LightningBow : BaseUnityPlugin
+    public class Item2Placeholder : BaseUnityPlugin
     {
         // The Plugin GUID should be a unique ID for this plugin,
         // which is human readable (as it is used in places like the config).
@@ -56,7 +56,7 @@ namespace ExamplePlugin
             // Language Tokens, explained there https://risk-of-thunder.github.io/R2Wiki/Mod-Creation/Assets/Localization/
             myItemDef.name = "BOW_NAME";
             myItemDef.nameToken = "Lightning Bow";
-            myItemDef.pickupToken = "Grants a small boost to crit chance and movespeed.";
+            myItemDef.pickupToken = "Higher Jump Height";
             myItemDef.descriptionToken = "BOW_DESC";
             myItemDef.loreToken = "BOW_LORE";
 
@@ -97,13 +97,11 @@ namespace ExamplePlugin
             // But now we have defined an item, but it doesn't do anything yet. So we'll need to define that ourselves.
             //GlobalEventManager.onCharacterDeathGlobal += GlobalEventManager_onCharacterDeathGlobal;
 
-            RecalculateStatsAPI.GetStatCoefficients += AddCritChance;
-
-            RecalculateStatsAPI.GetStatCoefficients += ChangeMoveSpeed;
+            RecalculateStatsAPI.GetStatCoefficients += AddJumpHeight;
         }
 
 
-        private void AddCritChance(CharacterBody sender, StatHookEventArgs args)
+        private void AddJumpHeight(CharacterBody sender, StatHookEventArgs args)
         {
             var inventory = sender.inventory;
 
@@ -111,30 +109,16 @@ namespace ExamplePlugin
             {
                 var count = inventory.GetItemCount(myItemDef.itemIndex);
 
-                if (count < 14)
+                if (count < 5)
                 {
-                    args.critAdd += 7 * count;
+                    args.jumpPowerMultAdd += 2 * count;
                 }
-            }
+                else if (count > 10)
+                {
+                    args.jumpPowerMultAdd += count;
+                }
         }
 
-
-
-        private void ChangeMoveSpeed(CharacterBody sender, StatHookEventArgs args)
-        {
-            var inventory = sender.inventory;
-
-            if (inventory)
-            {
-                var count = inventory.GetItemCount(myItemDef.itemIndex);
-
-                if (count < 10)
-                {
-                    // +1 is +100%, always use += or -= with args or it will fuck up other recalculatestatsapi subscriptions
-                    args.moveSpeedMultAdd += count;
-                }
-            }
-        }
 
 
         //private void GlobalEventManager_onCharacterDeathGlobal(DamageReport report)
