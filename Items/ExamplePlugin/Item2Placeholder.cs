@@ -38,7 +38,7 @@ namespace ExamplePlugin
         // Change the PluginAuthor and the PluginName !
         public const string PluginGUID = PluginAuthor + "." + PluginName;
         public const string PluginAuthor = "Lipo";
-        public const string PluginName = "LightningBow";
+        public const string PluginName = "Item1";
         public const string PluginVersion = "1.0.0";
 
         // We need our item definition to persist through our functions, and therefore make it a class field.
@@ -54,11 +54,11 @@ namespace ExamplePlugin
             myItemDef = ScriptableObject.CreateInstance<ItemDef>();
 
             // Language Tokens, explained there https://risk-of-thunder.github.io/R2Wiki/Mod-Creation/Assets/Localization/
-            myItemDef.name = "BOW_NAME";
-            myItemDef.nameToken = "Lightning Bow";
+            myItemDef.name = "ITEM2_NAME";
+            myItemDef.nameToken = "item2";
             myItemDef.pickupToken = "Higher Jump Height";
-            myItemDef.descriptionToken = "BOW_DESC";
-            myItemDef.loreToken = "BOW_LORE";
+            myItemDef.descriptionToken = "ITEM2_DESC";
+            myItemDef.loreToken = "ITEM2_LORE";
 
             // The tier determines what rarity the item is:
             // Tier1=white, Tier2=green, Tier3=red, Lunar=Lunar, Boss=yellow,
@@ -117,52 +117,55 @@ namespace ExamplePlugin
                 {
                     args.jumpPowerMultAdd += count;
                 }
-        }
-
-
-
-        //private void GlobalEventManager_onCharacterDeathGlobal(DamageReport report)
-        //{
-        //    // If a character was killed by the world, we shouldn't do anything.
-        //    if (!report.attacker || !report.attackerBody)
-        //    {
-        //        return;
-        //    }
-
-        //    var attackerCharacterBody = report.attackerBody;
-
-        //    // We need an inventory to do check for our item
-        //    if (attackerCharacterBody.inventory)
-        //    {
-        //        // Store the amount of our item we have
-        //        var garbCount = attackerCharacterBody.inventory.GetItemCount(myItemDef.itemIndex);
-        //        if (garbCount > 0 &&
-        //            // Roll for our 50% chance.
-        //            Util.CheckRoll(50, attackerCharacterBody.master))
-        //        {
-        //            // Since we passed all checks, we now give our attacker the cloaked buff.
-        //            // Note how we are scaling the buff duration depending on the number of the custom item in our inventory.
-        //            attackerCharacterBody.AddTimedBuff(RoR2Content.Buffs.Cloak, 3 + garbCount);
-        //        }
-        //    }
-        //}
-
-
-
-        // The Update() method is run on every frame of the game.
-        private void Update()
-        {
-            // This if statement checks if the player has currently pressed F2.
-            if (Input.GetKeyDown(KeyCode.F5))
-            {
-                // Get the player body to use a position:
-                var transform = PlayerCharacterMasterController.instances[0].master.GetBodyObject().transform;
-
-                // And then drop our defined item in front of the player.
-
-                Log.Info($"Player pressed F2. Spawning our custom item at coordinates {transform.position}");
-                PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(myItemDef.itemIndex), transform.position, transform.forward * 20f);
             }
         }
-    }
+
+
+
+            //private void GlobalEventManager_onCharacterDeathGlobal(DamageReport report)
+            //{
+            //    // If a character was killed by the world, we shouldn't do anything.
+            //    if (!report.attacker || !report.attackerBody)
+            //    {
+            //        return;
+            //    }
+
+            //    var attackerCharacterBody = report.attackerBody;
+
+            //    // We need an inventory to do check for our item
+            //    if (attackerCharacterBody.inventory)
+            //    {
+            //        // Store the amount of our item we have
+            //        var garbCount = attackerCharacterBody.inventory.GetItemCount(myItemDef.itemIndex);
+            //        if (garbCount > 0 &&
+            //            // Roll for our 50% chance.
+            //            Util.CheckRoll(50, attackerCharacterBody.master))
+            //        {
+            //            // Since we passed all checks, we now give our attacker the cloaked buff.
+            //            // Note how we are scaling the buff duration depending on the number of the custom item in our inventory.
+            //            attackerCharacterBody.AddTimedBuff(RoR2Content.Buffs.Cloak, 3 + garbCount);
+            //        }
+            //    }
+            //}
+
+
+
+            // The Update() method is run on every frame of the game.
+            private void Update()
+            {
+                // This if statement checks if the player has currently pressed F2.
+                if (Input.GetKeyDown(KeyCode.F7))
+                {
+                    // Get the player body to use a position:
+                    var transform = PlayerCharacterMasterController.instances[0].master.GetBodyObject().transform;
+
+                    // And then drop our defined item in front of the player.
+
+                    Log.Info($"Player pressed F2. Spawning our custom item at coordinates {transform.position}");
+                    PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(myItemDef.itemIndex), transform.position, transform.forward * 20f);
+                }
+            }
+        }
+
+
 }

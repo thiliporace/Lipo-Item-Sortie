@@ -18,11 +18,11 @@
     "MOTH_DESC": "FALLBACK DEFAULT LANGUAGE Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
     "MOTH_LORE": "FALLBACK DEFAULT LANGUAGE Those who visit in the night are either praying for a favour, or preying on a neighbour.",
 
-    "BOW_NAME": "FALLBACK DEFAULT LANGUAGE Lightning Bow",
-    "BOW_TOKEN": "FALLBACK DEFAULT LANGUAGE Lightning Bow",
-    "BOW_PICKUP": "FALLBACK DEFAULT LANGUAGE Grants a small boost to crit chance and movespeed.",
-    "BOW_DESC": "FALLBACK DEFAULT LANGUAGE Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
-    "BOW_LORE": "FALLBACK DEFAULT LANGUAGE Those who visit in the night are either praying for a favour, or preying on a neighbour."
+    "LIGHTNING_BOW_NAME": "FALLBACK DEFAULT LANGUAGE Lightning Bow",
+    "LIGHTNING_BOW_TOKEN": "FALLBACK DEFAULT LANGUAGE Lightning Bow",
+    "LIGHTNING_BOW_PICKUP": "FALLBACK DEFAULT LANGUAGE Grants a small boost to crit chance and movespeed.",
+    "LIGHTNING_BOW_DESC": "FALLBACK DEFAULT LANGUAGE Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
+    "LIGHTNING_BOW_LORE": "FALLBACK DEFAULT LANGUAGE Those who visit in the night are either praying for a favour, or preying on a neighbour."
 
   },
 
@@ -45,10 +45,10 @@
     "MOTH_DESC": "ENGLISH Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
     "MOTH_LORE": "ENGLISH Those who visit in the night are either praying for a favour, or preying on a neighbour.",
 
-    "BOW_NAME": "ENGLISH Lightning Bow",
-    "BOW_TOKEN": "ENGLISH Lightning Bow",
-    "BOW_PICKUP": "ENGLISHGrants a small boost to crit chance and movespeed.",
-    "BOW_DESC": "ENGLISH Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
-    "BOW_LORE": "ENGLISH Those who visit in the night are either praying for a favour, or preying on a neighbour."
+    "LIGHTNING_BOW_NAME": "ENGLISH Lightning Bow",
+    "LIGHTNING_BOW_TOKEN": "ENGLISH Lightning Bow",
+    "LIGHTNING_BOW_PICKUP": "ENGLISHGrants a small boost to crit chance and movespeed.",
+    "LIGHTNING_BOW_DESC": "ENGLISH Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
+    "LIGHTNING_BOW_LORE": "ENGLISH Those who visit in the night are either praying for a favour, or preying on a neighbour."
   }
 }

@@ -38,7 +38,7 @@ namespace ExamplePlugin
         // Change the PluginAuthor and the PluginName !
         public const string PluginGUID = PluginAuthor + "." + PluginName;
         public const string PluginAuthor = "Lipo";
-        public const string PluginName = "LightningBow";
+        public const string PluginName = "Item1";
         public const string PluginVersion = "1.0.0";
 
         // We need our item definition to persist through our functions, and therefore make it a class field.
@@ -54,11 +54,11 @@ namespace ExamplePlugin
             myItemDef = ScriptableObject.CreateInstance<ItemDef>();
 
             // Language Tokens, explained there https://risk-of-thunder.github.io/R2Wiki/Mod-Creation/Assets/Localization/
-            myItemDef.name = "BOW_NAME";
-            myItemDef.nameToken = "Lightning Bow";
-            myItemDef.pickupToken = "Higher crit chance and damage. Lower health";
-            myItemDef.descriptionToken = "BOW_DESC";
-            myItemDef.loreToken = "BOW_LORE";
+            myItemDef.name = "ITEM1_NAME";
+            myItemDef.nameToken = "item1";
+            myItemDef.pickupToken = "...";
+            myItemDef.descriptionToken = "ITEM1_DESC";
+            myItemDef.loreToken = "ITEM1_LORE";
 
             // The tier determines what rarity the item is:
             // Tier1=white, Tier2=green, Tier3=red, Lunar=Lunar, Boss=yellow,
@@ -166,7 +166,7 @@ namespace ExamplePlugin
         private void Update()
         {
             // This if statement checks if the player has currently pressed F2.
-            if (Input.GetKeyDown(KeyCode.F5))
+            if (Input.GetKeyDown(KeyCode.F6))
             {
                 // Get the player body to use a position:
                 var transform = PlayerCharacterMasterController.instances[0].master.GetBodyObject().transform;

@@ -54,11 +54,11 @@ namespace ExamplePlugin
             myItemDef = ScriptableObject.CreateInstance<ItemDef>();
 
             // Language Tokens, explained there https://risk-of-thunder.github.io/R2Wiki/Mod-Creation/Assets/Localization/
-            myItemDef.name = "BOW_NAME";
+            myItemDef.name = "LIGHTNING_BOW_NAME";
             myItemDef.nameToken = "Lightning Bow";
             myItemDef.pickupToken = "Grants a small boost to crit chance and movespeed.";
-            myItemDef.descriptionToken = "BOW_DESC";
-            myItemDef.loreToken = "BOW_LORE";
+            myItemDef.descriptionToken = "LIGHTNING_BOW_DESC";
+            myItemDef.loreToken = "LIGHTNING_BOW_LORE";
 
             // The tier determines what rarity the item is:
             // Tier1=white, Tier2=green, Tier3=red, Lunar=Lunar, Boss=yellow,
@@ -115,6 +115,10 @@ namespace ExamplePlugin
                 {
                     args.critAdd += 7 * count;
                 }
+                else if (count > 15)
+                {
+                    args.critAdd = 95;
+                }
             }
         }
 
@@ -128,11 +132,9 @@ namespace ExamplePlugin
             {
                 var count = inventory.GetItemCount(myItemDef.itemIndex);
 
-                if (count < 10)
-                {
-                    // +1 is +100%, always use += or -= with args or it will fuck up other recalculatestatsapi subscriptions
-                    args.moveSpeedMultAdd += count;
-                }
+                // +1 is +100%, always use += or -= with args or it will fuck up other recalculatestatsapi subscriptions
+                args.baseMoveSpeedAdd += count * (1 + 1/2);
+                
             }
         }
 

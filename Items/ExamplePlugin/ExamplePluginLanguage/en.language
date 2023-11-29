@@ -2,16 +2,16 @@
   "strings": {
 
     //[LUNAR]
-    "TONIC_JAR_NAME": "FALLBACK DEFAULT LANGUAGE Tonic Jar",
-    "TONIC_JAR_TOKEN": "FALLBACK DEFAULT LANGUAGE Tonic Jar",
-    "TONIC_JAR_PICKUP": "FALLBACK DEFAULT LANGUAGE On kill, receive the Tonic Buff. However, during its duration all healing is disabled",
+    "TONIC_JAR_NAME": "FALLBACK DEFAULT LANGUAGE Bleeding Lotto",
+    "TONIC_JAR_TOKEN": "FALLBACK DEFAULT LANGUAGE Bleeding Lotto",
+    "TONIC_JAR_PICKUP": "FALLBACK DEFAULT LANGUAGE Chance to get a buff after killing an enemy. During its duration receive the Death Mark debuff.",
     "TONIC_JAR_DESC": "FALLBACK DEFAULT LANGUAGE On kill, receive the Tonic Buff. However, during its duration all healing is disabled",
     "TONIC_JAR_LORE": "FALLBACK DEFAULT LANGUAGE TONIC_JAR_LORE",
 
     //[TIER4(RED)]
     "BULLET_NAME": "FALLBACK DEFAULT LANGUAGE Bullet Extravaganza",
     "BULLET_TOKEN": "FALLBACK DEFAULT LANGUAGE Bullet Extravaganza",
-    "BULLET_PICKUP": "FALLBACK DEFAULT LANGUAGE On kill, receive the Tonic Buff. However, during its duration all healing is disabled",
+    "BULLET_PICKUP": "FALLBACK DEFAULT LANGUAGE Receive a massive dose of attack speed when attacking enemies. Overall damage reduced.",
     "BULLET_DESC": "FALLBACK DEFAULT LANGUAGE On kill, receive the Tonic Buff. However, during its duration all healing is disabled",
     "BULLET_LORE": "FALLBACK DEFAULT LANGUAGE TONIC_JAR_LORE",
 
@@ -23,24 +23,24 @@
     "MOTH_LORE": "FALLBACK DEFAULT LANGUAGE Those who visit in the night are either praying for a favour, or preying on a neighbour.",
 
     //[TIER 1]
-    "BOW_NAME": "FALLBACK DEFAULT LANGUAGE Lightning Bow",
-    "BOW_TOKEN": "FALLBACK DEFAULT LANGUAGE Lightning Bow",
-    "BOW_PICKUP": "FALLBACK DEFAULT LANGUAGE Grants a small boost to crit chance and movespeed.",
-    "BOW_DESC": "FALLBACK DEFAULT LANGUAGE Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
-    "BOW_LORE": "FALLBACK DEFAULT LANGUAGE Those who visit in the night are either praying for a favour, or preying on a neighbour."
+    "LIGHTNING_BOW_NAME": "FALLBACK DEFAULT LANGUAGE Lightning Bow",
+    "LIGHTNING_BOW_TOKEN": "FALLBACK DEFAULT LANGUAGE Lightning Bow",
+    "LIGHTNING_BOW_PICKUP": "FALLBACK DEFAULT LANGUAGE Grants a small boost to crit chance and movespeed.",
+    "LIGHTNING_BOW_DESC": "FALLBACK DEFAULT LANGUAGE Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
+    "LIGHTNING_BOW_LORE": "FALLBACK DEFAULT LANGUAGE Those who visit in the night are either praying for a favour, or preying on a neighbour."
   },
   "en": {
     //[LUNAR]
-    "TONIC_JAR_NAME": "ENGLISH Tonic Jar",
-    "TONIC_JAR_TOKEN": "ENGLISH Tonic Jar",
-    "TONIC_JAR_PICKUP": "ENGLISH On kill, receive the Tonic Buff. However, during its duration all healing is disabled",
+    "TONIC_JAR_NAME": "ENGLISH Bleeding Lotto",
+    "TONIC_JAR_TOKEN": "ENGLISH Bleeding Lotto",
+    "TONIC_JAR_PICKUP": "ENGLISHChance to get a buff after killing an enemy. During its duration receive the Death Mark debuff.",
     "TONIC_JAR_DESC": "ENGLISH On kill, receive the Tonic Buff. However, during its duration all healing is disabled",
     "TONIC_JAR_LORE": "ENGLISH TONIC_JAR_LORE",
 
-    //[TIER4(RED)]
+    //[LUNAR]
     "BULLET_NAME": "ENGLISH Bullet Extravaganza",
     "BULLET_TOKEN": "ENGLISH Bullet Extravaganza",
-    "BULLET_PICKUP": "ENGLISH On kill, receive the Tonic Buff. However, during its duration all healing is disabled",
+    "BULLET_PICKUP": "ENGLISH Receive a massive dose of attack speed when attacking enemies. Overall damage reduced.",
     "BULLET_DESC": "ENGLISH On kill, receive the Tonic Buff. However, during its duration all healing is disabled",
     "BULLET_LORE": "ENGLISH TONIC_JAR_LORE",
 
@@ -52,10 +52,10 @@
     "MOTH_LORE": "ENGLISH Those who visit in the night are either praying for a favour, or preying on a neighbour.",
 
     //[TIER 1]
-    "BOW_NAME": "ENGLISH Lightning Bow",
-    "BOW_TOKEN": "ENGLISH Lightning Bow",
-    "BOW_PICKUP": "ENGLISH Grants a small boost to crit chance and movespeed.",
-    "BOW_DESC": "ENGLISH Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
-    "BOW_LORE": "ENGLISH Those who visit in the night are either praying for a favour, or preying on a neighbour."
+    "LIGHTNING_BOW_NAME": "ENGLISH Lightning Bow",
+    "LIGHTNING_BOW_TOKEN": "ENGLISH Lightning Bow",
+    "LIGHTNING_BOW_PICKUP": "ENGLISH Grants a small boost to crit chance and movespeed.",
+    "LIGHTNING_BOW_DESC": "ENGLISH Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
+    "LIGHTNING_BOW_LORE": "ENGLISH Those who visit in the night are either praying for a favour, or preying on a neighbour."
   }
 }

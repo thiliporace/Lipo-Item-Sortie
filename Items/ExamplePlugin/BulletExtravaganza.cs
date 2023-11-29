@@ -56,7 +56,7 @@ namespace ExamplePlugin
             // Language Tokens, explained there https://risk-of-thunder.github.io/R2Wiki/Mod-Creation/Assets/Localization/
             myItemDef.name = "BULLET_NAME";
             myItemDef.nameToken = "Bullet Extravaganza";
-            myItemDef.pickupToken = "Receive a massive dose of attack speed. Overall damage reduced.";
+            myItemDef.pickupToken = "Receive a massive dose of attack speed when attacking enemies. Overall damage reduced.";
             myItemDef.descriptionToken = "BULLET_DESC";
             myItemDef.loreToken = "BULLET_LORE";
             
@@ -66,7 +66,7 @@ namespace ExamplePlugin
             // Tier1=white, Tier2=green, Tier3=red, Lunar=Lunar, Boss=yellow,
             // and finally NoTier is generally used for helper items, like the tonic affliction
 #pragma warning disable Publicizer001 // Accessing a member that was not originally public. Here we ignore this warning because with how this example is setup we are forced to do this
-            myItemDef._itemTierDef = Addressables.LoadAssetAsync<ItemTierDef>("RoR2/Base/Common/Tier2Def.asset").WaitForCompletion();
+            myItemDef._itemTierDef = Addressables.LoadAssetAsync<ItemTierDef>("RoR2/Base/Common/LunarDef.asset").WaitForCompletion();
 #pragma warning restore Publicizer001
             // Instead of loading the itemtierdef directly, you can also do this like below as a workaround
             // myItemDef.deprecatedTier = ItemTier.Tier2;
@@ -124,11 +124,11 @@ namespace ExamplePlugin
                 {
                     //1 BuffIndex e 2 float
                     //attackerCharacterBody.AddTimedBuff(RoR2Content.Buffs.)
-                    attackerCharacterBody.attackSpeed += (1 * count);
+                    attackerCharacterBody.attackSpeed += count * 2;
                 }
                 else if (count > 5){
                     
-                    attackerCharacterBody.attackSpeed += (2 * count);
+                    attackerCharacterBody.attackSpeed += count * 3;
                 }
             }
         }
@@ -143,11 +143,11 @@ namespace ExamplePlugin
 
                 if (count < 5)
                 {
-                    args.baseDamageAdd -= 1 * count;
+                    args.baseDamageAdd -= count * 8;
                 }
                 else if (count > 5)
                 {
-                    args.baseDamageAdd -= 1 + (count * 2);
+                    args.baseDamageAdd -= count * 10;
                 }
             }
         }

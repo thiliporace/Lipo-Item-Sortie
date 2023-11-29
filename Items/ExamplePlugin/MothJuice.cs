@@ -51,7 +51,7 @@ namespace ExamplePlugin
             // Language Tokens, explained there https://risk-of-thunder.github.io/R2Wiki/Mod-Creation/Assets/Localization/
             myItemDef.name = "MOTH_NAME";
             myItemDef.nameToken = "Moth Juice";
-            myItemDef.pickupToken = "When levelling up receive a massive buff.";
+            myItemDef.pickupToken = "When levelling up reduce all cooldowns.";
             myItemDef.descriptionToken = "MOTH_DESC";
             myItemDef.loreToken = "MOTH_LORE";
 
