@@ -29,7 +29,7 @@ namespace ExamplePlugin
     // so you can use this as a reference for what you can declare and use in your plugin class
     // More information in the Unity Docs: https://docs.unity3d.com/ScriptReference/MonoBehaviour.html
 
-    public class Item2Placeholder : BaseUnityPlugin
+    public class LaryRightArm : BaseUnityPlugin
     {
         // The Plugin GUID should be a unique ID for this plugin,
         // which is human readable (as it is used in places like the config).
@@ -38,7 +38,7 @@ namespace ExamplePlugin
         // Change the PluginAuthor and the PluginName !
         public const string PluginGUID = PluginAuthor + "." + PluginName;
         public const string PluginAuthor = "Lipo";
-        public const string PluginName = "Item1";
+        public const string PluginName = "LaryRightArm";
         public const string PluginVersion = "1.0.0";
 
         // We need our item definition to persist through our functions, and therefore make it a class field.
@@ -54,17 +54,19 @@ namespace ExamplePlugin
             myItemDef = ScriptableObject.CreateInstance<ItemDef>();
 
             // Language Tokens, explained there https://risk-of-thunder.github.io/R2Wiki/Mod-Creation/Assets/Localization/
-            myItemDef.name = "ITEM2_NAME";
-            myItemDef.nameToken = "item2";
-            myItemDef.pickupToken = "Higher Jump Height";
-            myItemDef.descriptionToken = "ITEM2_DESC";
-            myItemDef.loreToken = "ITEM2_LORE";
+            myItemDef.name = "LARY_RIGHT_ARM_NAME";
+            myItemDef.nameToken = "Lary's Right Arm";
+            myItemDef.pickupToken = "On crit, apply the Death Mark debuff for a certain duration.";
+            myItemDef.descriptionToken = "LARY_RIGHT_ARM_DESC";
+            myItemDef.loreToken = "LARY_RIGHT_ARM_LORE";
+
+            myItemDef.tags = new ItemTag[] { ItemTag.Damage };
 
             // The tier determines what rarity the item is:
             // Tier1=white, Tier2=green, Tier3=red, Lunar=Lunar, Boss=yellow,
             // and finally NoTier is generally used for helper items, like the tonic affliction
 #pragma warning disable Publicizer001 // Accessing a member that was not originally public. Here we ignore this warning because with how this example is setup we are forced to do this
-            myItemDef._itemTierDef = Addressables.LoadAssetAsync<ItemTierDef>("RoR2/Base/Common/Tier1Def.asset").WaitForCompletion();
+            myItemDef._itemTierDef = Addressables.LoadAssetAsync<ItemTierDef>("RoR2/Base/Common/Tier3Def.asset").WaitForCompletion();
 #pragma warning restore Publicizer001
             // Instead of loading the itemtierdef directly, you can also do this like below as a workaround
             // myItemDef.deprecatedTier = ItemTier.Tier2;
@@ -97,61 +99,68 @@ namespace ExamplePlugin
             // But now we have defined an item, but it doesn't do anything yet. So we'll need to define that ourselves.
             //GlobalEventManager.onCharacterDeathGlobal += GlobalEventManager_onCharacterDeathGlobal;
 
-            RecalculateStatsAPI.GetStatCoefficients += AddJumpHeight;
+            GlobalEventManager.onServerDamageDealt += GlobalEventManager_onCritDamage;
         }
 
 
-        private void AddJumpHeight(CharacterBody sender, StatHookEventArgs args)
+        private void GlobalEventManager_onCritDamage(DamageReport report)
         {
-            var inventory = sender.inventory;
-
-            if (inventory)
+            // If a character was killed by the world, we shouldn't do anything.
+            if (!report.attacker || !report.attackerBody)
             {
-                var count = inventory.GetItemCount(myItemDef.itemIndex);
+                return;
+            }
 
-                if (count < 5)
+            var attackerCharacterBody = report.attackerBody;
+            var victimCharacterBody = report.victimBody;
+
+            // We need an inventory to do check for our item
+            if (attackerCharacterBody.inventory)
+            {
+                // Store the amount of our item we have
+                var count = attackerCharacterBody.inventory.GetItemCount(myItemDef.itemIndex);
+
+                var duration = count;
+                
+                if (count > 0 && report.damageInfo.crit)
                 {
-                    args.jumpPowerMultAdd += 2 * count;
-                }
-                else if (count > 10)
-                {
-                    args.jumpPowerMultAdd += count;
+                    victimCharacterBody.AddTimedBuff(RoR2Content.Buffs.DeathMark, duration);
                 }
             }
         }
 
 
 
-            //private void GlobalEventManager_onCharacterDeathGlobal(DamageReport report)
-            //{
-            //    // If a character was killed by the world, we shouldn't do anything.
-            //    if (!report.attacker || !report.attackerBody)
-            //    {
-            //        return;
-            //    }
+        //private void GlobalEventManager_onCharacterDeathGlobal(DamageReport report)
+        //{
+        //    // If a character was killed by the world, we shouldn't do anything.
+        //    if (!report.attacker || !report.attackerBody)
+        //    {
+        //        return;
+        //    }
 
-            //    var attackerCharacterBody = report.attackerBody;
+        //    var attackerCharacterBody = report.attackerBody;
 
-            //    // We need an inventory to do check for our item
-            //    if (attackerCharacterBody.inventory)
-            //    {
-            //        // Store the amount of our item we have
-            //        var garbCount = attackerCharacterBody.inventory.GetItemCount(myItemDef.itemIndex);
-            //        if (garbCount > 0 &&
-            //            // Roll for our 50% chance.
-            //            Util.CheckRoll(50, attackerCharacterBody.master))
-            //        {
-            //            // Since we passed all checks, we now give our attacker the cloaked buff.
-            //            // Note how we are scaling the buff duration depending on the number of the custom item in our inventory.
-            //            attackerCharacterBody.AddTimedBuff(RoR2Content.Buffs.Cloak, 3 + garbCount);
-            //        }
-            //    }
-            //}
+        //    // We need an inventory to do check for our item
+        //    if (attackerCharacterBody.inventory)
+        //    {
+        //        // Store the amount of our item we have
+        //        var garbCount = attackerCharacterBody.inventory.GetItemCount(myItemDef.itemIndex);
+        //        if (garbCount > 0 &&
+        //            // Roll for our 50% chance.
+        //            Util.CheckRoll(50, attackerCharacterBody.master))
+        //        {
+        //            // Since we passed all checks, we now give our attacker the cloaked buff.
+        //            // Note how we are scaling the buff duration depending on the number of the custom item in our inventory.
+        //            attackerCharacterBody.AddTimedBuff(RoR2Content.Buffs.Cloak, 3 + garbCount);
+        //        }
+        //    }
+        //}
 
 
 
-            // The Update() method is run on every frame of the game.
-            private void Update()
+        // The Update() method is run on every frame of the game.
+        private void Update()
             {
                 // This if statement checks if the player has currently pressed F2.
                 if (Input.GetKeyDown(KeyCode.F7))

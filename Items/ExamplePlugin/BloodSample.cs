@@ -29,7 +29,7 @@ namespace ExamplePlugin
     // so you can use this as a reference for what you can declare and use in your plugin class
     // More information in the Unity Docs: https://docs.unity3d.com/ScriptReference/MonoBehaviour.html
 
-    public class ItemPlaceholder : BaseUnityPlugin
+    public class BloodSample : BaseUnityPlugin
     {
         // The Plugin GUID should be a unique ID for this plugin,
         // which is human readable (as it is used in places like the config).
@@ -38,7 +38,7 @@ namespace ExamplePlugin
         // Change the PluginAuthor and the PluginName !
         public const string PluginGUID = PluginAuthor + "." + PluginName;
         public const string PluginAuthor = "Lipo";
-        public const string PluginName = "Item1";
+        public const string PluginName = "BloodSample";
         public const string PluginVersion = "1.0.0";
 
         // We need our item definition to persist through our functions, and therefore make it a class field.
@@ -54,17 +54,19 @@ namespace ExamplePlugin
             myItemDef = ScriptableObject.CreateInstance<ItemDef>();
 
             // Language Tokens, explained there https://risk-of-thunder.github.io/R2Wiki/Mod-Creation/Assets/Localization/
-            myItemDef.name = "ITEM1_NAME";
-            myItemDef.nameToken = "item1";
-            myItemDef.pickupToken = "...";
-            myItemDef.descriptionToken = "ITEM1_DESC";
-            myItemDef.loreToken = "ITEM1_LORE";
+            myItemDef.name = "BLOOD_SAMPLE_NAME";
+            myItemDef.nameToken = "Blood Sample";
+            myItemDef.pickupToken = "Add crit chance and crit damage but lower health.";
+            myItemDef.descriptionToken = "BLOOD_SAMPLE_DESC";
+            myItemDef.loreToken = "BLOOD_SAMPLE_LORE";
+
+            myItemDef.tags = new ItemTag[] { ItemTag.Damage };
 
             // The tier determines what rarity the item is:
             // Tier1=white, Tier2=green, Tier3=red, Lunar=Lunar, Boss=yellow,
             // and finally NoTier is generally used for helper items, like the tonic affliction
 #pragma warning disable Publicizer001 // Accessing a member that was not originally public. Here we ignore this warning because with how this example is setup we are forced to do this
-            myItemDef._itemTierDef = Addressables.LoadAssetAsync<ItemTierDef>("RoR2/Base/Common/Tier1Def.asset").WaitForCompletion();
+            myItemDef._itemTierDef = Addressables.LoadAssetAsync<ItemTierDef>("RoR2/Base/Common/Tier2Def.asset").WaitForCompletion();
 #pragma warning restore Publicizer001
             // Instead of loading the itemtierdef directly, you can also do this like below as a workaround
             // myItemDef.deprecatedTier = ItemTier.Tier2;
@@ -111,7 +113,7 @@ namespace ExamplePlugin
             {
                 var count = inventory.GetItemCount(myItemDef.itemIndex);
 
-                args.critAdd += 10 * count;
+                args.critAdd += 15 * count;
                 args.critDamageMultAdd += count;
 
             }
@@ -128,7 +130,7 @@ namespace ExamplePlugin
                 var count = inventory.GetItemCount(myItemDef.itemIndex);
 
                 // +1 is +100%, always use += or -= with args or it will fuck up other recalculatestatsapi subscriptions
-                args.healthMultAdd -= 8 * count;
+                args.baseHealthAdd -= sender.maxHealth/5 * count;
 
             }
         }

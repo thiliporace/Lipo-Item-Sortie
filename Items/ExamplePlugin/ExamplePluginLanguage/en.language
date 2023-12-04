@@ -8,12 +8,19 @@
     "TONIC_JAR_DESC": "FALLBACK DEFAULT LANGUAGE On kill, receive the Tonic Buff. However, during its duration all healing is disabled",
     "TONIC_JAR_LORE": "FALLBACK DEFAULT LANGUAGE TONIC_JAR_LORE",
 
-    //[TIER4(RED)]
+    //[LUNAR]
     "BULLET_NAME": "FALLBACK DEFAULT LANGUAGE Bullet Extravaganza",
     "BULLET_TOKEN": "FALLBACK DEFAULT LANGUAGE Bullet Extravaganza",
     "BULLET_PICKUP": "FALLBACK DEFAULT LANGUAGE Receive a massive dose of attack speed when attacking enemies. Overall damage reduced.",
     "BULLET_DESC": "FALLBACK DEFAULT LANGUAGE On kill, receive the Tonic Buff. However, during its duration all healing is disabled",
     "BULLET_LORE": "FALLBACK DEFAULT LANGUAGE TONIC_JAR_LORE",
+
+    //[TIER 3(RED)]
+    "LARY_RIGHT_ARM_NAME": "FALLBACK DEFAULT LANGUAGE Lary's Right Arm",
+    "LARY_RIGHT_ARM_TOKEN": "FALLBACK DEFAULT LANGUAGE Lary's Right Arm",
+    "LARY_RIGHT_ARM_PICKUP": "FALLBACK DEFAULT LANGUAGE On crit, apply the Death Mark debuff for a certain duration.",
+    "LARY_RIGHT_ARM_DESC": "FALLBACK DEFAULT LANGUAGE Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
+    "LARY_RIGHT_ARM_LORE": "FALLBACK DEFAULT LANGUAGE Those who visit in the night are either praying for a favour, or preying on a neighbour.",
 
     //[TIER 2]
     "MOTH_NAME": "FALLBACK DEFAULT LANGUAGE Moth Juice",
@@ -21,6 +28,12 @@
     "MOTH_PICKUP": "FALLBACK DEFAULT LANGUAGE When levelling up receive a massive buff.",
     "MOTH_DESC": "FALLBACK DEFAULT LANGUAGE Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
     "MOTH_LORE": "FALLBACK DEFAULT LANGUAGE Those who visit in the night are either praying for a favour, or preying on a neighbour.",
+
+    "BLOOD_SAMPLE_NAME": "FALLBACK DEFAULT LANGUAGE Blood Sample",
+    "BLOOD_SAMPLE_TOKEN": "FALLBACK DEFAULT LANGUAGE Blood Sample",
+    "BLOOD_SAMPLE_PICKUP": "FALLBACK DEFAULT LANGUAGE Add crit chance but lower health.",
+    "BLOOD_SAMPLE_DESC": "FALLBACK DEFAULT LANGUAGE Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
+    "BLOOD_SAMPLE_LORE": "FALLBACK DEFAULT LANGUAGE Those who visit in the night are either praying for a favour, or preying on a neighbour.",
 
     //[TIER 1]
     "LIGHTNING_BOW_NAME": "FALLBACK DEFAULT LANGUAGE Lightning Bow",
@@ -44,6 +57,13 @@
     "BULLET_DESC": "ENGLISH On kill, receive the Tonic Buff. However, during its duration all healing is disabled",
     "BULLET_LORE": "ENGLISH TONIC_JAR_LORE",
 
+    //[TIER 3(RED)]
+    "LARY_RIGHT_ARM_NAME": "ENGLISH Lary's Right Arm",
+    "LARY_RIGHT_ARM_TOKEN": "ENGLISH Lary's Right Arm",
+    "LARY_RIGHT_ARM_PICKUP": "ENGLISH On crit, apply the Death Mark debuff for a certain duration.",
+    "LARY_RIGHT_ARM_DESC": "ENGLISH Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
+    "LARY_RIGHT_ARM_LORE": "ENGLISH Those who visit in the night are either praying for a favour, or preying on a neighbour.",
+
     //[TIER 2]
     "MOTH_NAME": "ENGLISH Moth Juice",
     "MOTH_TOKEN": "ENGLISH Moth Juice",
@@ -51,11 +71,19 @@
     "MOTH_DESC": "ENGLISH Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
     "MOTH_LORE": "ENGLISH Those who visit in the night are either praying for a favour, or preying on a neighbour.",
 
+    "BLOOD_SAMPLE_NAME": "ENGLISH Blood Sample",
+    "BLOOD_SAMPLE_TOKEN": "ENGLISH Blood Sample",
+    "BLOOD_SAMPLE_PICKUP": "ENGLISH Add crit chance but lower health.",
+    "BLOOD_SAMPLE_DESC": "ENGLISH Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
+    "BLOOD_SAMPLE_LORE": "ENGLISH Those who visit in the night are either praying for a favour, or preying on a neighbour.",
+
     //[TIER 1]
     "LIGHTNING_BOW_NAME": "ENGLISH Lightning Bow",
     "LIGHTNING_BOW_TOKEN": "ENGLISH Lightning Bow",
     "LIGHTNING_BOW_PICKUP": "ENGLISH Grants a small boost to crit chance and movespeed.",
     "LIGHTNING_BOW_DESC": "ENGLISH Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
     "LIGHTNING_BOW_LORE": "ENGLISH Those who visit in the night are either praying for a favour, or preying on a neighbour."
+
+
   }
 }

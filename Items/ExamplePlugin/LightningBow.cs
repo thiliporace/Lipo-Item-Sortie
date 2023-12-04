@@ -60,6 +60,8 @@ namespace ExamplePlugin
             myItemDef.descriptionToken = "LIGHTNING_BOW_DESC";
             myItemDef.loreToken = "LIGHTNING_BOW_LORE";
 
+            myItemDef.tags = new ItemTag[] { ItemTag.Damage };
+
             // The tier determines what rarity the item is:
             // Tier1=white, Tier2=green, Tier3=red, Lunar=Lunar, Boss=yellow,
             // and finally NoTier is generally used for helper items, like the tonic affliction
@@ -115,10 +117,11 @@ namespace ExamplePlugin
                 {
                     args.critAdd += 7 * count;
                 }
-                else if (count > 15)
+                else
                 {
-                    args.critAdd = 95;
+                    args.critAdd += 6 * count;
                 }
+                
             }
         }
 
