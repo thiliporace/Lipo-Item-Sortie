@@ -29,7 +29,7 @@ namespace ExamplePlugin
     // so you can use this as a reference for what you can declare and use in your plugin class
     // More information in the Unity Docs: https://docs.unity3d.com/ScriptReference/MonoBehaviour.html
 
-    public class BloodSample : BaseUnityPlugin
+    public class WeddingRing : BaseUnityPlugin
     {
         // The Plugin GUID should be a unique ID for this plugin,
         // which is human readable (as it is used in places like the config).
@@ -38,7 +38,7 @@ namespace ExamplePlugin
         // Change the PluginAuthor and the PluginName !
         public const string PluginGUID = PluginAuthor + "." + PluginName;
         public const string PluginAuthor = "Lipo";
-        public const string PluginName = "BloodSample";
+        public const string PluginName = "WeddingRing";
         public const string PluginVersion = "1.0.0";
 
         // We need our item definition to persist through our functions, and therefore make it a class field.
@@ -54,11 +54,11 @@ namespace ExamplePlugin
             myItemDef = ScriptableObject.CreateInstance<ItemDef>();
 
             // Language Tokens, explained there https://risk-of-thunder.github.io/R2Wiki/Mod-Creation/Assets/Localization/
-            myItemDef.name = "BLOOD_SAMPLE_NAME";
-            myItemDef.nameToken = "Blood Sample";
-            myItemDef.pickupToken = "Add crit chance and crit damage but lower health.";
-            myItemDef.descriptionToken = "BLOOD_SAMPLE_DESC";
-            myItemDef.loreToken = "BLOOD_SAMPLE_LORE";
+            myItemDef.name = "WEDDING_RING_NAME";
+            myItemDef.nameToken = "Wedding Ring";
+            myItemDef.pickupToken = "On kill, there is a chance to receive a small armor boost.";
+            myItemDef.descriptionToken = "WEDDING_RING_DESC";
+            myItemDef.loreToken = "WEDDING_RING_LORE";
 
             myItemDef.tags = new ItemTag[] { ItemTag.Damage };
 
@@ -99,40 +99,31 @@ namespace ExamplePlugin
             // But now we have defined an item, but it doesn't do anything yet. So we'll need to define that ourselves.
             //GlobalEventManager.onCharacterDeathGlobal += GlobalEventManager_onCharacterDeathGlobal;
 
-            RecalculateStatsAPI.GetStatCoefficients += AddCritChance;
-
-            RecalculateStatsAPI.GetStatCoefficients += LowerHealth;
+            GlobalEventManager.onCharacterDeathGlobal += GlobalEventManager_onCharacterDeathGlobal;
         }
 
 
-        private void AddCritChance(CharacterBody sender, StatHookEventArgs args)
+
+        private void GlobalEventManager_onCharacterDeathGlobal(DamageReport report)
         {
-            var inventory = sender.inventory;
-
-            if (inventory)
+            if (!report.attacker || !report.attackerBody)
             {
-                var count = inventory.GetItemCount(myItemDef.itemIndex);
+                return;
+            }
 
-                args.critAdd += 15 * count;
-                args.critDamageMultAdd += count;
+            var attackerCharacterBody = report.attackerBody;
 
+            var count = attackerCharacterBody.inventory.GetItemCount(myItemDef.itemIndex);
+
+            var duration = (count * 2) + 2;
+
+            if (count > 0 && 
+                Util.CheckRoll(35 + 5 * count, attackerCharacterBody.master))
+            {
+                attackerCharacterBody.AddTimedBuff(RoR2Content.Buffs.SmallArmorBoost, duration);
             }
         }
 
-
-
-        private void LowerHealth(CharacterBody sender, StatHookEventArgs args)
-        {
-            var inventory = sender.inventory;
-
-            if (inventory)
-            {
-                var count = inventory.GetItemCount(myItemDef.itemIndex);
-
-                // +1 is +100%, always use += or -= with args or it will fuck up other recalculatestatsapi subscriptions
-                args.baseHealthAdd -= sender.maxHealth/5 * count;
-            }
-        }
 
 
         //private void GlobalEventManager_onCharacterDeathGlobal(DamageReport report)
@@ -167,7 +158,7 @@ namespace ExamplePlugin
         private void Update()
         {
             // This if statement checks if the player has currently pressed F2.
-            if (Input.GetKeyDown(KeyCode.F6))
+            if (Input.GetKeyDown(KeyCode.F9))
             {
                 // Get the player body to use a position:
                 var transform = PlayerCharacterMasterController.instances[0].master.GetBodyObject().transform;
@@ -179,4 +170,6 @@ namespace ExamplePlugin
             }
         }
     }
+
+
 }

@@ -43,7 +43,7 @@ namespace ExamplePlugin
             // Language Tokens, explained there https://risk-of-thunder.github.io/R2Wiki/Mod-Creation/Assets/Localization/
             myItemDef.name = "TONIC_JAR_NAME";
             myItemDef.nameToken = "Bleeding Lotto";
-            myItemDef.pickupToken = "Chance to get a buff after killing an enemy. During its duration receive the Death Mark debuff.";
+            myItemDef.pickupToken = "Chance to apply hellfire on kill.";
             myItemDef.descriptionToken = "TONIC_JAR_DESC";
             myItemDef.loreToken = "TONIC_JAR_LORE";
             
@@ -96,6 +96,7 @@ namespace ExamplePlugin
             }
 
             var attackerCharacterBody = report.attackerBody;
+            var victimCharacterBody = report.victimBody;
 
             // We need an inventory to do check for our item
             if (attackerCharacterBody.inventory)
@@ -105,18 +106,16 @@ namespace ExamplePlugin
                 var duration = 2 + garbCount;
                 if (garbCount > 0 && garbCount < 4 &&
                     // Roll for our 50% chance.
-                    Util.CheckRoll(50 + (5 * garbCount), attackerCharacterBody.master))
+                    Util.CheckRoll(40 + (10 * garbCount), attackerCharacterBody.master))
                 {
                     // Since we passed all checks, we now give our attacker the cloaked buff.
                     // Note how we are scaling the buff duration depending on the number of the custom item in our inventory.
-                    attackerCharacterBody.AddTimedBuff(RoR2Content.Buffs.TonicBuff,duration + garbCount);
-                    attackerCharacterBody.AddTimedBuff(RoR2Content.Buffs.DeathMark, duration + garbCount);
+                    victimCharacterBody.AddHelfireDuration(duration * 2);
                 }
                 else if (garbCount > 4 &&
                     Util.CheckRoll(65 + garbCount, attackerCharacterBody.master))
                 {
-                    attackerCharacterBody.AddTimedBuff(RoR2Content.Buffs.TonicBuff, duration + garbCount);
-                    attackerCharacterBody.AddTimedBuff(RoR2Content.Buffs.DeathMark, duration + garbCount);
+                    victimCharacterBody.AddHelfireDuration(duration * 2);
                 }
             }
         }

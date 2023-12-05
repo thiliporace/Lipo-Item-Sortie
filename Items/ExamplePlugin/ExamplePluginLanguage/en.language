@@ -4,11 +4,10 @@
     //[LUNAR]
     "TONIC_JAR_NAME": "FALLBACK DEFAULT LANGUAGE Bleeding Lotto",
     "TONIC_JAR_TOKEN": "FALLBACK DEFAULT LANGUAGE Bleeding Lotto",
-    "TONIC_JAR_PICKUP": "FALLBACK DEFAULT LANGUAGE Chance to get a buff after killing an enemy. During its duration receive the Death Mark debuff.",
+    "TONIC_JAR_PICKUP": "FALLBACK DEFAULT LANGUAGE Chance to apply hellfire on kill.",
     "TONIC_JAR_DESC": "FALLBACK DEFAULT LANGUAGE On kill, receive the Tonic Buff. However, during its duration all healing is disabled",
     "TONIC_JAR_LORE": "FALLBACK DEFAULT LANGUAGE TONIC_JAR_LORE",
 
-    //[LUNAR]
     "BULLET_NAME": "FALLBACK DEFAULT LANGUAGE Bullet Extravaganza",
     "BULLET_TOKEN": "FALLBACK DEFAULT LANGUAGE Bullet Extravaganza",
     "BULLET_PICKUP": "FALLBACK DEFAULT LANGUAGE Receive a massive dose of attack speed when attacking enemies. Overall damage reduced.",
@@ -18,9 +17,15 @@
     //[TIER 3(RED)]
     "LARY_RIGHT_ARM_NAME": "FALLBACK DEFAULT LANGUAGE Lary's Right Arm",
     "LARY_RIGHT_ARM_TOKEN": "FALLBACK DEFAULT LANGUAGE Lary's Right Arm",
-    "LARY_RIGHT_ARM_PICKUP": "FALLBACK DEFAULT LANGUAGE On crit, apply the Death Mark debuff for a certain duration.",
+    "LARY_RIGHT_ARM_PICKUP": "FALLBACK DEFAULT LANGUAGE On crit, apply bleeding for a certain duration.",
     "LARY_RIGHT_ARM_DESC": "FALLBACK DEFAULT LANGUAGE Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
     "LARY_RIGHT_ARM_LORE": "FALLBACK DEFAULT LANGUAGE Those who visit in the night are either praying for a favour, or preying on a neighbour.",
+
+    "DIVINE_AMULET_NAME": "FALLBACK DEFAULT LANGUAGE Divine Amulet",
+    "DIVINE_AMULET_TOKEN": "FALLBACK DEFAULT LANGUAGE Divine Amulet",
+    "DIVINE_AMULET_PICKUP": "FALLBACK DEFAULT LANGUAGE On every non crit attack, cripple enemies.",
+    "DIVINE_AMULET_DESC": "FALLBACK DEFAULT LANGUAGE Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
+    "DIVINE_AMULET_LORE": "FALLBACK DEFAULT LANGUAGE Those who visit in the night are either praying for a favour, or preying on a neighbour.",
 
     //[TIER 2]
     "MOTH_NAME": "FALLBACK DEFAULT LANGUAGE Moth Juice",
@@ -35,6 +40,18 @@
     "BLOOD_SAMPLE_DESC": "FALLBACK DEFAULT LANGUAGE Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
     "BLOOD_SAMPLE_LORE": "FALLBACK DEFAULT LANGUAGE Those who visit in the night are either praying for a favour, or preying on a neighbour.",
 
+    "WEDDING_RING_NAME": "FALLBACK DEFAULT LANGUAGE Wedding Ring",
+    "WEDDING_RING_TOKEN": "FALLBACK DEFAULT LANGUAGE Wedding Ring",
+    "WEDDING_RING_PICKUP": "FALLBACK DEFAULT LANGUAGE On kill, there is a chance to receive a small armor boost.",
+    "WEDDING_RING_DESC": "FALLBACK DEFAULT LANGUAGE Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
+    "WEDDING_RING_LORE": "FALLBACK DEFAULT LANGUAGE Those who visit in the night are either praying for a favour, or preying on a neighbour.",
+
+    "EXPENSIVE_PURSE_NAME": "FALLBACK DEFAULT LANGUAGE Expensive Purse",
+    "EXPENSIVE_PURSE_TOKEN": "FALLBACK DEFAULT LANGUAGE Expensive Purse",
+    "EXPENSIVE_PURSE_PICKUP": "FALLBACK DEFAULT LANGUAGE Increase damage and jump height. If health is low, reduce health regeneration.",
+    "EXPENSIVE_PURSE_DESC": "FALLBACK DEFAULT LANGUAGE Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
+    "EXPENSIVE_PURSE_LORE": "FALLBACK DEFAULT LANGUAGE Those who visit in the night are either praying for a favour, or preying on a neighbour.",
+
     //[TIER 1]
     "LIGHTNING_BOW_NAME": "FALLBACK DEFAULT LANGUAGE Lightning Bow",
     "LIGHTNING_BOW_TOKEN": "FALLBACK DEFAULT LANGUAGE Lightning Bow",
@@ -46,11 +63,10 @@
     //[LUNAR]
     "TONIC_JAR_NAME": "ENGLISH Bleeding Lotto",
     "TONIC_JAR_TOKEN": "ENGLISH Bleeding Lotto",
-    "TONIC_JAR_PICKUP": "ENGLISHChance to get a buff after killing an enemy. During its duration receive the Death Mark debuff.",
+    "TONIC_JAR_PICKUP": "ENGLISH Chance to apply hellfire on kill.",
     "TONIC_JAR_DESC": "ENGLISH On kill, receive the Tonic Buff. However, during its duration all healing is disabled",
     "TONIC_JAR_LORE": "ENGLISH TONIC_JAR_LORE",
 
-    //[LUNAR]
     "BULLET_NAME": "ENGLISH Bullet Extravaganza",
     "BULLET_TOKEN": "ENGLISH Bullet Extravaganza",
     "BULLET_PICKUP": "ENGLISH Receive a massive dose of attack speed when attacking enemies. Overall damage reduced.",
@@ -60,9 +76,15 @@
     //[TIER 3(RED)]
     "LARY_RIGHT_ARM_NAME": "ENGLISH Lary's Right Arm",
     "LARY_RIGHT_ARM_TOKEN": "ENGLISH Lary's Right Arm",
-    "LARY_RIGHT_ARM_PICKUP": "ENGLISH On crit, apply the Death Mark debuff for a certain duration.",
+    "LARY_RIGHT_ARM_PICKUP": "ENGLISH On crit, apply bleeding for a certain duration.",
     "LARY_RIGHT_ARM_DESC": "ENGLISH Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
     "LARY_RIGHT_ARM_LORE": "ENGLISH Those who visit in the night are either praying for a favour, or preying on a neighbour.",
+
+    "DIVINE_AMULET_NAME": "ENGLISH Divine Amulet",
+    "DIVINE_AMULET_TOKEN": "ENGLISH Divine Amulet",
+    "DIVINE_AMULET_PICKUP": "ENGLISH On every non crit attack, cripple enemies.",
+    "DIVINE_AMULET_DESC": "ENGLISH Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
+    "DIVINE_AMULET_LORE": "ENGLISH Those who visit in the night are either praying for a favour, or preying on a neighbour.",
 
     //[TIER 2]
     "MOTH_NAME": "ENGLISH Moth Juice",
@@ -76,6 +98,18 @@
     "BLOOD_SAMPLE_PICKUP": "ENGLISH Add crit chance but lower health.",
     "BLOOD_SAMPLE_DESC": "ENGLISH Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
     "BLOOD_SAMPLE_LORE": "ENGLISH Those who visit in the night are either praying for a favour, or preying on a neighbour.",
+
+    "WEDDING_RING_NAME": "ENGLISH Wedding Ring",
+    "WEDDING_RING_TOKEN": "ENGLISH Wedding Ring",
+    "WEDDING_RING_PICKUP": "ENGLISH On kill, there is a chance to receive a small armor boost.",
+    "WEDDING_RING_DESC": "ENGLISH Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
+    "WEDDING_RING_LORE": "ENGLISH Those who visit in the night are either praying for a favour, or preying on a neighbour.",
+
+    "EXPENSIVE_PURSE_NAME": "ENGLISH Expensive Purse",
+    "EXPENSIVE_PURSE_TOKEN": "ENGLISH Expensive Purse",
+    "EXPENSIVE_PURSE_PICKUP": "ENGLISH Increase damage and jump height. If health is low, reduce health regeneration.",
+    "EXPENSIVE_PURSE_DESC": "ENGLISH Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
+    "EXPENSIVE_PURSE_LORE": "ENGLISH Those who visit in the night are either praying for a favour, or preying on a neighbour.",
 
     //[TIER 1]
     "LIGHTNING_BOW_NAME": "ENGLISH Lightning Bow",

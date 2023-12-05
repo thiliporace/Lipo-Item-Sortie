@@ -136,7 +136,7 @@ namespace ExamplePlugin
                 var count = inventory.GetItemCount(myItemDef.itemIndex);
 
                 // +1 is +100%, always use += or -= with args or it will fuck up other recalculatestatsapi subscriptions
-                args.baseMoveSpeedAdd += count * (1 + 1/2);
+                args.baseMoveSpeedAdd += count;
                 
             }
         }

@@ -56,7 +56,7 @@ namespace ExamplePlugin
             // Language Tokens, explained there https://risk-of-thunder.github.io/R2Wiki/Mod-Creation/Assets/Localization/
             myItemDef.name = "LARY_RIGHT_ARM_NAME";
             myItemDef.nameToken = "Lary's Right Arm";
-            myItemDef.pickupToken = "On crit, apply the Death Mark debuff for a certain duration.";
+            myItemDef.pickupToken = "On crit, apply bleeding for a certain duration.";
             myItemDef.descriptionToken = "LARY_RIGHT_ARM_DESC";
             myItemDef.loreToken = "LARY_RIGHT_ARM_LORE";
 
@@ -124,7 +124,7 @@ namespace ExamplePlugin
                 
                 if (count > 0 && report.damageInfo.crit)
                 {
-                    victimCharacterBody.AddTimedBuff(RoR2Content.Buffs.DeathMark, duration);
+                    victimCharacterBody.AddBuff(RoR2Content.Buffs.Bleeding);
                 }
             }
         }

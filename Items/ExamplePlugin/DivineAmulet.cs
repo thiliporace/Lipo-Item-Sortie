@@ -29,7 +29,7 @@ namespace ExamplePlugin
     // so you can use this as a reference for what you can declare and use in your plugin class
     // More information in the Unity Docs: https://docs.unity3d.com/ScriptReference/MonoBehaviour.html
 
-    public class BloodSample : BaseUnityPlugin
+    public class DivineAmulet : BaseUnityPlugin
     {
         // The Plugin GUID should be a unique ID for this plugin,
         // which is human readable (as it is used in places like the config).
@@ -38,7 +38,7 @@ namespace ExamplePlugin
         // Change the PluginAuthor and the PluginName !
         public const string PluginGUID = PluginAuthor + "." + PluginName;
         public const string PluginAuthor = "Lipo";
-        public const string PluginName = "BloodSample";
+        public const string PluginName = "LaryRightArm";
         public const string PluginVersion = "1.0.0";
 
         // We need our item definition to persist through our functions, and therefore make it a class field.
@@ -54,11 +54,11 @@ namespace ExamplePlugin
             myItemDef = ScriptableObject.CreateInstance<ItemDef>();
 
             // Language Tokens, explained there https://risk-of-thunder.github.io/R2Wiki/Mod-Creation/Assets/Localization/
-            myItemDef.name = "BLOOD_SAMPLE_NAME";
-            myItemDef.nameToken = "Blood Sample";
-            myItemDef.pickupToken = "Add crit chance and crit damage but lower health.";
-            myItemDef.descriptionToken = "BLOOD_SAMPLE_DESC";
-            myItemDef.loreToken = "BLOOD_SAMPLE_LORE";
+            myItemDef.name = "DIVINE_AMULET_NAME";
+            myItemDef.nameToken = "Divine Amulet";
+            myItemDef.pickupToken = "On every non crit attack, cripple enemies.";
+            myItemDef.descriptionToken = "DIVINE_AMULET_DESC";
+            myItemDef.loreToken = "DIVINE_AMULET_LORE";
 
             myItemDef.tags = new ItemTag[] { ItemTag.Damage };
 
@@ -66,7 +66,7 @@ namespace ExamplePlugin
             // Tier1=white, Tier2=green, Tier3=red, Lunar=Lunar, Boss=yellow,
             // and finally NoTier is generally used for helper items, like the tonic affliction
 #pragma warning disable Publicizer001 // Accessing a member that was not originally public. Here we ignore this warning because with how this example is setup we are forced to do this
-            myItemDef._itemTierDef = Addressables.LoadAssetAsync<ItemTierDef>("RoR2/Base/Common/Tier2Def.asset").WaitForCompletion();
+            myItemDef._itemTierDef = Addressables.LoadAssetAsync<ItemTierDef>("RoR2/Base/Common/Tier3Def.asset").WaitForCompletion();
 #pragma warning restore Publicizer001
             // Instead of loading the itemtierdef directly, you can also do this like below as a workaround
             // myItemDef.deprecatedTier = ItemTier.Tier2;
@@ -99,40 +99,38 @@ namespace ExamplePlugin
             // But now we have defined an item, but it doesn't do anything yet. So we'll need to define that ourselves.
             //GlobalEventManager.onCharacterDeathGlobal += GlobalEventManager_onCharacterDeathGlobal;
 
-            RecalculateStatsAPI.GetStatCoefficients += AddCritChance;
-
-            RecalculateStatsAPI.GetStatCoefficients += LowerHealth;
+            GlobalEventManager.onServerDamageDealt += GlobalEventManager_onCritDamage;
         }
 
 
-        private void AddCritChance(CharacterBody sender, StatHookEventArgs args)
+        private void GlobalEventManager_onCritDamage(DamageReport report)
         {
-            var inventory = sender.inventory;
-
-            if (inventory)
+            // If a character was killed by the world, we shouldn't do anything.
+            if (!report.attacker || !report.attackerBody)
             {
-                var count = inventory.GetItemCount(myItemDef.itemIndex);
+                return;
+            }
 
-                args.critAdd += 15 * count;
-                args.critDamageMultAdd += count;
+            var attackerCharacterBody = report.attackerBody;
+            var victimCharacterBody = report.victimBody;
 
+            // We need an inventory to do check for our item
+            if (attackerCharacterBody.inventory)
+            {
+                // Store the amount of our item we have
+                var count = attackerCharacterBody.inventory.GetItemCount(myItemDef.itemIndex);
+
+                var duration = count;
+                
+                if (count > 0 && !report.damageInfo.crit)
+                {
+                    victimCharacterBody.AddBuff(RoR2Content.Buffs.Cripple);
+                }
             }
         }
 
 
 
-        private void LowerHealth(CharacterBody sender, StatHookEventArgs args)
-        {
-            var inventory = sender.inventory;
-
-            if (inventory)
-            {
-                var count = inventory.GetItemCount(myItemDef.itemIndex);
-
-                // +1 is +100%, always use += or -= with args or it will fuck up other recalculatestatsapi subscriptions
-                args.baseHealthAdd -= sender.maxHealth/5 * count;
-            }
-        }
 
 
         //private void GlobalEventManager_onCharacterDeathGlobal(DamageReport report)
@@ -165,18 +163,20 @@ namespace ExamplePlugin
 
         // The Update() method is run on every frame of the game.
         private void Update()
-        {
-            // This if statement checks if the player has currently pressed F2.
-            if (Input.GetKeyDown(KeyCode.F6))
             {
-                // Get the player body to use a position:
-                var transform = PlayerCharacterMasterController.instances[0].master.GetBodyObject().transform;
+                // This if statement checks if the player has currently pressed F2.
+                if (Input.GetKeyDown(KeyCode.F8))
+                {
+                    // Get the player body to use a position:
+                    var transform = PlayerCharacterMasterController.instances[0].master.GetBodyObject().transform;
 
-                // And then drop our defined item in front of the player.
+                    // And then drop our defined item in front of the player.
 
-                Log.Info($"Player pressed F2. Spawning our custom item at coordinates {transform.position}");
-                PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(myItemDef.itemIndex), transform.position, transform.forward * 20f);
+                    Log.Info($"Player pressed F2. Spawning our custom item at coordinates {transform.position}");
+                    PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(myItemDef.itemIndex), transform.position, transform.forward * 20f);
+                }
             }
         }
-    }
+
+
 }
