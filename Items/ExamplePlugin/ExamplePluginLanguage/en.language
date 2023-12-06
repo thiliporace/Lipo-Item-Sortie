@@ -15,11 +15,11 @@
     "BULLET_LORE": "FALLBACK DEFAULT LANGUAGE TONIC_JAR_LORE",
 
     //[TIER 3(RED)]
-    "LARY_RIGHT_ARM_NAME": "FALLBACK DEFAULT LANGUAGE Lary's Right Arm",
-    "LARY_RIGHT_ARM_TOKEN": "FALLBACK DEFAULT LANGUAGE Lary's Right Arm",
-    "LARY_RIGHT_ARM_PICKUP": "FALLBACK DEFAULT LANGUAGE On crit, apply bleeding for a certain duration.",
-    "LARY_RIGHT_ARM_DESC": "FALLBACK DEFAULT LANGUAGE Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
-    "LARY_RIGHT_ARM_LORE": "FALLBACK DEFAULT LANGUAGE Those who visit in the night are either praying for a favour, or preying on a neighbour.",
+    "LARY_ARM_NAME": "FALLBACK DEFAULT LANGUAGE Lary's Right Arm",
+    "LARY_ARM_TOKEN": "FALLBACK DEFAULT LANGUAGE Lary's Right Arm",
+    "LARY_ARM_PICKUP": "FALLBACK DEFAULT LANGUAGE On crit, apply bleeding for a certain duration.",
+    "LARY_ARM_DESC": "FALLBACK DEFAULT LANGUAGE Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
+    "LARY_ARM_LORE_TOKEN": "FALLBACK DEFAULT LANGUAGE Those who visit in the night are either praying for a favour, or preying on a neighbour.",
 
     "DIVINE_AMULET_NAME": "FALLBACK DEFAULT LANGUAGE Divine Amulet",
     "DIVINE_AMULET_TOKEN": "FALLBACK DEFAULT LANGUAGE Divine Amulet",
@@ -57,7 +57,13 @@
     "LIGHTNING_BOW_TOKEN": "FALLBACK DEFAULT LANGUAGE Lightning Bow",
     "LIGHTNING_BOW_PICKUP": "FALLBACK DEFAULT LANGUAGE Grants a small boost to crit chance and movespeed.",
     "LIGHTNING_BOW_DESC": "FALLBACK DEFAULT LANGUAGE Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
-    "LIGHTNING_BOW_LORE": "FALLBACK DEFAULT LANGUAGE Those who visit in the night are either praying for a favour, or preying on a neighbour."
+    "LIGHTNING_BOW_LORE": "FALLBACK DEFAULT LANGUAGE Those who visit in the night are either praying for a favour, or preying on a neighbour.",
+
+    "POKE_BOWL_NAME": "FALLBACK DEFAULT LANGUAGE Poke Bowl",
+    "POKE_BOWL_TOKEN": "FALLBACK DEFAULT LANGUAGE Poke Bowl",
+    "POKE_BOWL_PICKUP": "FALLBACK DEFAULT LANGUAGE Level up. When killing an enemy there is a small chance of healing.",
+    "POKE_BOWL_DESC": "FALLBACK DEFAULT LANGUAGE Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
+    "POKE_BOWL_LORE": "FALLBACK DEFAULT LANGUAGE Those who visit in the night are either praying for a favour, or preying on a neighbour."
   },
   "en": {
     //[LUNAR]
@@ -74,11 +80,11 @@
     "BULLET_LORE": "ENGLISH TONIC_JAR_LORE",
 
     //[TIER 3(RED)]
-    "LARY_RIGHT_ARM_NAME": "ENGLISH Lary's Right Arm",
-    "LARY_RIGHT_ARM_TOKEN": "ENGLISH Lary's Right Arm",
-    "LARY_RIGHT_ARM_PICKUP": "ENGLISH On crit, apply bleeding for a certain duration.",
-    "LARY_RIGHT_ARM_DESC": "ENGLISH Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
-    "LARY_RIGHT_ARM_LORE": "ENGLISH Those who visit in the night are either praying for a favour, or preying on a neighbour.",
+    "LARY_ARM_NAME": "ENGLISH Lary's Right Arm",
+    "LARY_ARM_TOKEN": "ENGLISH Lary's Right Arm",
+    "LARY_ARM_PICKUP": "ENGLISH On crit, apply bleeding for a certain duration.",
+    "LARY_ARM_DESC": "ENGLISH Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
+    "LARY_ARM_LORE_TOKEN": "ENGLISH Those who visit in the night are either praying for a favour, or preying on a neighbour.",
 
     "DIVINE_AMULET_NAME": "ENGLISH Divine Amulet",
     "DIVINE_AMULET_TOKEN": "ENGLISH Divine Amulet",
@@ -116,7 +122,13 @@
     "LIGHTNING_BOW_TOKEN": "ENGLISH Lightning Bow",
     "LIGHTNING_BOW_PICKUP": "ENGLISH Grants a small boost to crit chance and movespeed.",
     "LIGHTNING_BOW_DESC": "ENGLISH Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
-    "LIGHTNING_BOW_LORE": "ENGLISH Those who visit in the night are either praying for a favour, or preying on a neighbour."
+    "LIGHTNING_BOW_LORE": "ENGLISH Those who visit in the night are either praying for a favour, or preying on a neighbour.",
+
+    "POKE_BOWL_NAME": "ENGLISH Poke Bowl",
+    "POKE_BOWL_TOKEN": "ENGLISH Poke Bowl",
+    "POKE_BOWL_PICKUP": "ENGLISH Level up. When killing an enemy there is a small chance of healing.",
+    "POKE_BOWL_DESC": "ENGLISH Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>50%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style>.",
+    "POKE_BOWL_LORE": "ENGLISH Those who visit in the night are either praying for a favour, or preying on a neighbour."
 
 
   }

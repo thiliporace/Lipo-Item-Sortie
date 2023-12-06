@@ -1,71 +1,86 @@
-using BepInEx;
+﻿using BepInEx;
 using R2API;
 using RoR2;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using static R2API.RecalculateStatsAPI;
 
 namespace ExamplePlugin
 {
+
     [BepInDependency(ItemAPI.PluginGUID)]
 
     [BepInDependency(LanguageAPI.PluginGUID)]
 
+    [BepInDependency(RecalculateStatsAPI.PluginGUID)]
+
     [BepInPlugin(PluginGUID, PluginName, PluginVersion)]
 
 
-    public class BleedingLotto : BaseUnityPlugin
+    public class Item : BaseUnityPlugin
     {
 
         public const string PluginGUID = PluginAuthor + "." + PluginName;
         public const string PluginAuthor = "Lipo";
-        public const string PluginName = "BleedingLotto";
+        public const string PluginName = "PokeBowl";
         public const string PluginVersion = "1.0.0";
 
-
+        
         private static ItemDef myItemDef;
 
- 
         public void Awake()
         {
-
+            
             Log.Init(Logger);
 
-
+            
             myItemDef = ScriptableObject.CreateInstance<ItemDef>();
 
-
-            myItemDef.name = "TONIC_JAR_NAME";
-            myItemDef.nameToken = "Bleeding Lotto";
-            myItemDef.pickupToken = "Chance to apply hellfire on kill.";
-            myItemDef.descriptionToken = "'In my eyes an experiment gone wrong, in yours?'. 'It looks cute!'.";
-            myItemDef.loreToken = "TONIC_JAR_LORE";
             
-            myItemDef.tags = new ItemTag[] { ItemTag.Damage };
+            myItemDef.name = "POKE_BOWL_NAME";
+            myItemDef.nameToken = "Poke Bowl";
+            myItemDef.pickupToken = "50 health. When killing an enemy there is a small chance of healing.";
+            myItemDef.descriptionToken = "A bowl of ingredients and spices. How did it end up here?";
+            myItemDef.loreToken = "POKE_BOWL_LORE";
+
+            myItemDef.tags = new ItemTag[] { ItemTag.Healing };
 
 
 #pragma warning disable Publicizer001 
-            myItemDef.deprecatedTier = ItemTier.Lunar;
+            myItemDef._itemTierDef = Addressables.LoadAssetAsync<ItemTierDef>("RoR2/Base/Common/Tier1Def.asset").WaitForCompletion();
 #pragma warning restore Publicizer001
 
 
-
+            // You can create your own icons and prefabs through assetbundles, but to keep this boilerplate brief, we'll be using question marks.
             myItemDef.pickupIconSprite = Addressables.LoadAssetAsync<Sprite>("RoR2/Base/Common/MiscIcons/texMysteryIcon.png").WaitForCompletion();
             myItemDef.pickupModelPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Mystery/PickupMystery.prefab").WaitForCompletion();
 
-
             myItemDef.canRemove = true;
 
-
             myItemDef.hidden = false;
-
 
             var displayRules = new ItemDisplayRuleDict(null);
 
 
             ItemAPI.Add(new CustomItem(myItemDef, displayRules));
 
-   
+
             GlobalEventManager.onCharacterDeathGlobal += GlobalEventManager_onCharacterDeathGlobal;
+            RecalculateStatsAPI.GetStatCoefficients += AddLevel;
+        }
+
+
+        private void AddLevel(CharacterBody sender, StatHookEventArgs args)
+        {
+            var inventory = sender.inventory;
+
+            if (inventory)
+            {
+                var count = inventory.GetItemCount(myItemDef.itemIndex);
+
+                args.baseHealthAdd += 50 * count;
+                
+            }
         }
 
         private void GlobalEventManager_onCharacterDeathGlobal(DamageReport report)
@@ -77,40 +92,29 @@ namespace ExamplePlugin
             }
 
             var attackerCharacterBody = report.attackerBody;
-            var victimCharacterBody = report.victimBody;
 
-            
             if (attackerCharacterBody.inventory)
             {
 
-                var garbCount = attackerCharacterBody.inventory.GetItemCount(myItemDef.itemIndex);
+                var count = attackerCharacterBody.inventory.GetItemCount(myItemDef.itemIndex);
 
-                var duration = 2 + garbCount;
-
-                if (garbCount > 0 && garbCount < 4 &&
-                    
-                    Util.CheckRoll(40 + (10 * garbCount), attackerCharacterBody.master))
+                if (count > 0 && Util.CheckRoll(10 + 5 * count,attackerCharacterBody.master))
                 {
-                    victimCharacterBody.AddHelfireDuration(duration * 2);
-                }
-                else if (garbCount > 4 &&
-                    Util.CheckRoll(65 + garbCount, attackerCharacterBody.master))
-                {
-                    victimCharacterBody.AddHelfireDuration(duration * 2);
+                    attackerCharacterBody.AddTimedBuff(RoR2Content.Buffs.MedkitHeal,count * 2);
                 }
             }
         }
 
+
+
+
         //Remove later
         private void Update()
         {
-            // This if statement checks if the player has currently pressed F2.
-            if (Input.GetKeyDown(KeyCode.F2))
-            {
-                // Get the player body to use a position:
-                var transform = PlayerCharacterMasterController.instances[0].master.GetBodyObject().transform;
 
-                // And then drop our defined item in front of the player.
+            if (Input.GetKeyDown(KeyCode.F11))
+            {
+                var transform = PlayerCharacterMasterController.instances[0].master.GetBodyObject().transform;
 
                 Log.Info($"Player pressed F2. Spawning our custom item at coordinates {transform.position}");
                 PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(myItemDef.itemIndex), transform.position, transform.forward * 20f);
