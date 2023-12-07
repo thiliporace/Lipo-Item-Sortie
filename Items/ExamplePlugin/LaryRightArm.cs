@@ -1,4 +1,5 @@
 ﻿using BepInEx;
+using JetBrains.Annotations;
 using R2API;
 using RoR2;
 using UnityEngine;
@@ -39,7 +40,7 @@ namespace ExamplePlugin
 
             myItemDef.name = "LARY_ARM_NAME";
             myItemDef.nameToken = "Lary's Right Arm";
-            myItemDef.pickupToken = "On crit, apply bleeding for a certain duration.";
+            myItemDef.pickupToken = "On crit, apply bleeding.";
             myItemDef.descriptionToken = "Don't stick with it.";
             myItemDef.loreToken = "test";
 
@@ -50,6 +51,7 @@ namespace ExamplePlugin
             myItemDef._itemTierDef = Addressables.LoadAssetAsync<ItemTierDef>("RoR2/Base/Common/Tier3Def.asset").WaitForCompletion();
 #pragma warning restore Publicizer001
 
+ 
 
 
             myItemDef.pickupIconSprite = Addressables.LoadAssetAsync<Sprite>("RoR2/Base/Common/MiscIcons/texMysteryIcon.png").WaitForCompletion();
@@ -67,6 +69,8 @@ namespace ExamplePlugin
 
 
             GlobalEventManager.onServerDamageDealt += GlobalEventManager_onCritDamage;
+
+            RecalculateStatsAPI.GetStatCoefficients += AddCritChance;
         }
 
 
@@ -84,13 +88,23 @@ namespace ExamplePlugin
             if (attackerCharacterBody.inventory)
             {
                 var count = attackerCharacterBody.inventory.GetItemCount(myItemDef.itemIndex);
-
-                var duration = count;
                 
                 if (count > 0 && report.damageInfo.crit)
                 {
                     victimCharacterBody.AddBuff(RoR2Content.Buffs.Bleeding);
                 }
+            }
+        }
+
+        private void AddCritChance(CharacterBody sender, StatHookEventArgs args)
+        {
+            var inventory = sender.inventory;
+
+            if (inventory)
+            {
+                var count = inventory.GetItemCount(myItemDef.itemIndex);
+                args.critAdd += 5 * count;
+                
             }
         }
 

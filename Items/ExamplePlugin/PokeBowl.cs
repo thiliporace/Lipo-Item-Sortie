@@ -39,7 +39,7 @@ namespace ExamplePlugin
             
             myItemDef.name = "POKE_BOWL_NAME";
             myItemDef.nameToken = "Poke Bowl";
-            myItemDef.pickupToken = "50 health. When killing an enemy there is a small chance of healing.";
+            myItemDef.pickupToken = "30 health. When killing an enemy there is a small chance of healing.";
             myItemDef.descriptionToken = "A bowl of ingredients and spices. How did it end up here?";
             myItemDef.loreToken = "POKE_BOWL_LORE";
 
@@ -78,7 +78,7 @@ namespace ExamplePlugin
             {
                 var count = inventory.GetItemCount(myItemDef.itemIndex);
 
-                args.baseHealthAdd += 50 * count;
+                args.baseHealthAdd += 30 * count;
                 
             }
         }

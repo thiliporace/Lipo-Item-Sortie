@@ -1,4 +1,5 @@
 ﻿using BepInEx;
+using BepInEx.Configuration;
 using R2API;
 using RoR2;
 using UnityEngine;
@@ -16,6 +17,7 @@ namespace ExamplePlugin
 
     [BepInPlugin(PluginGUID, PluginName, PluginVersion)]
 
+    [BepInDependency(VoidItemAPI.VoidItemAPI.MODGUID)]
 
 
     public class BloodSample : BaseUnityPlugin
@@ -27,6 +29,7 @@ namespace ExamplePlugin
 
  
         private static ItemDef myItemDef;
+
 
         public void Awake()
         {
@@ -45,9 +48,12 @@ namespace ExamplePlugin
             myItemDef.tags = new ItemTag[] { ItemTag.Damage };
 
 
-#pragma warning disable Publicizer001 
-            myItemDef._itemTierDef = Addressables.LoadAssetAsync<ItemTierDef>("RoR2/Base/Common/Tier2Def.asset").WaitForCompletion();
+
+#pragma warning disable Publicizer001
+            //myItemDef._itemTierDef = Addressables.LoadAssetAsync<ItemTierDef>("RoR2/Base/Common/Tier2Def.asset").WaitForCompletion();
+            myItemDef.deprecatedTier = ItemTier.VoidTier1;
 #pragma warning restore Publicizer001
+
 
             myItemDef.pickupIconSprite = Addressables.LoadAssetAsync<Sprite>("RoR2/Base/Common/MiscIcons/texMysteryIcon.png").WaitForCompletion();
             myItemDef.pickupModelPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Mystery/PickupMystery.prefab").WaitForCompletion();
@@ -59,6 +65,8 @@ namespace ExamplePlugin
             myItemDef.hidden = false;
 
 
+           
+
             var displayRules = new ItemDisplayRuleDict(null);
 
             ItemAPI.Add(new CustomItem(myItemDef, displayRules));
@@ -67,7 +75,14 @@ namespace ExamplePlugin
             RecalculateStatsAPI.GetStatCoefficients += AddCritChance;
 
             RecalculateStatsAPI.GetStatCoefficients += LowerHealth;
+
+            //ainda nao ta funfando
+
+            VoidItemAPI.VoidTransformation.CreateTransformation(myItemDef, RoR2Content.Items.Infusion);
+
+
         }
+
 
 
         private void AddCritChance(CharacterBody sender, StatHookEventArgs args)

@@ -40,7 +40,7 @@ namespace ExamplePlugin
 
             myItemDef.name = "EXPENSIVE_PURSE_NAME";
             myItemDef.nameToken = "Expensive Purse";
-            myItemDef.pickupToken = "Increase damage and jump height. If health is low, reduce movespeed.";
+            myItemDef.pickupToken = "Increase jump height.";
             myItemDef.descriptionToken = "Now available in a new color! Purple Moss™! ";
             myItemDef.loreToken = "EXPENSIVE_PURSE_LORE";
 
@@ -65,8 +65,6 @@ namespace ExamplePlugin
 
 
             RecalculateStatsAPI.GetStatCoefficients += AddDamage;
-
-            RecalculateStatsAPI.GetStatCoefficients += LowerRegen;
         }
 
 
@@ -78,26 +76,11 @@ namespace ExamplePlugin
             {
                 var count = inventory.GetItemCount(myItemDef.itemIndex);
 
-                args.baseDamageAdd += (sender.baseDamage / 4) * count;
-                args.jumpPowerMultAdd += count/3;
+                args.jumpPowerMultAdd += count/2;
             }
         }
 
 
-
-        private void LowerRegen(CharacterBody sender, StatHookEventArgs args)
-        {
-            var inventory = sender.inventory;
-
-            var health = sender.healthComponent.health;
-
-            if (inventory && health <= sender.maxHealth/2)
-            {
-                var count = inventory.GetItemCount(myItemDef.itemIndex);
-
-                args.baseMoveSpeedAdd -= count/2;
-            }
-        }
 
 
 
