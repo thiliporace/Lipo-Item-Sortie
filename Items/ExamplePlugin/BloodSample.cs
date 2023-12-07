@@ -51,7 +51,7 @@ namespace ExamplePlugin
 
 #pragma warning disable Publicizer001
             //myItemDef._itemTierDef = Addressables.LoadAssetAsync<ItemTierDef>("RoR2/Base/Common/Tier2Def.asset").WaitForCompletion();
-            myItemDef.deprecatedTier = ItemTier.VoidTier1;
+            myItemDef.deprecatedTier = ItemTier.VoidTier2;
 #pragma warning restore Publicizer001
 
 
@@ -65,7 +65,7 @@ namespace ExamplePlugin
             myItemDef.hidden = false;
 
 
-           
+            VoidItemAPI.VoidTransformation.CreateTransformation(myItemDef, "Infusion");
 
             var displayRules = new ItemDisplayRuleDict(null);
 
@@ -76,9 +76,8 @@ namespace ExamplePlugin
 
             RecalculateStatsAPI.GetStatCoefficients += LowerHealth;
 
-            //ainda nao ta funfando
 
-            VoidItemAPI.VoidTransformation.CreateTransformation(myItemDef, RoR2Content.Items.Infusion);
+
 
 
         }
@@ -93,7 +92,7 @@ namespace ExamplePlugin
             {
                 var count = inventory.GetItemCount(myItemDef.itemIndex);
 
-                args.critAdd += 15 * count;
+                args.critAdd += 5 * count;
                 args.critDamageMultAdd += count;
 
             }
@@ -110,7 +109,7 @@ namespace ExamplePlugin
                 var count = inventory.GetItemCount(myItemDef.itemIndex);
 
                 // +1 is +100%, always use += or -= with args or it will fuck up other recalculatestatsapi subscriptions
-                args.baseHealthAdd -= sender.maxHealth/5 * count;
+                args.baseHealthAdd -= sender.maxHealth/4 * count;
             }
         }
 

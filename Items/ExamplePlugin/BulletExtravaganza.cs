@@ -70,35 +70,55 @@ namespace ExamplePlugin
             ItemAPI.Add(new CustomItem(myItemDef, displayRules));
 
 
-            GlobalEventManager.onServerDamageDealt += GlobalEventManager_onServerDamageDealt;
+           // GlobalEventManager.onServerDamageDealt += GlobalEventManager_onServerDamageDealt;
             RecalculateStatsAPI.GetStatCoefficients += ReduceDamage;
+            RecalculateStatsAPI.GetStatCoefficients += AddAttackSpeed;
         }
 
-        private void GlobalEventManager_onServerDamageDealt(DamageReport report)
-        {
+   //     private void GlobalEventManager_onServerDamageDealt(DamageReport report)
+   //     {
            
 
-            if (!report.attacker || !report.attackerBody)
-            {
-                return;
-            }
+   //         if (!report.attacker || !report.attackerBody)
+  //          {
+  //              return;
+  //          }
             
 
-            var attackerCharacterBody = report.attackerBody;
+  //          var attackerCharacterBody = report.attackerBody;
 
-            if (attackerCharacterBody.inventory)
-            {
-                var count = attackerCharacterBody.inventory.GetItemCount(myItemDef.itemIndex);
+  //          if (attackerCharacterBody.inventory)
+ //           {
+ //               var count = attackerCharacterBody.inventory.GetItemCount(myItemDef.itemIndex);
 
 
-                if (count > 0 && count < 5)
-                {
+ //               if (count > 0 && count < 5)
+ //               {
                     //1 BuffIndex e 2 float
-                    attackerCharacterBody.attackSpeed += count * 2;
-                }
-                else if (count > 5){
+ //                   attackerCharacterBody.attackSpeed += count * 2;
+ //               }
+//                else if (count > 5){
                     
-                    attackerCharacterBody.attackSpeed += count * 3;
+//                    attackerCharacterBody.attackSpeed += count * 3;
+//                }
+ //           }
+//        }
+
+        private void AddAttackSpeed(CharacterBody sender, StatHookEventArgs args)
+        {
+            var inventory = sender.inventory;
+
+            if (inventory)
+            {
+                var count = inventory.GetItemCount(myItemDef.itemIndex);
+
+                if (count < 5)
+                {
+                    args.baseAttackSpeedAdd += count * 2;
+                }
+                else if (count > 5)
+                {
+                    args.baseAttackSpeedAdd += count * 3;
                 }
             }
         }

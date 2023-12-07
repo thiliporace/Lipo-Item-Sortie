@@ -78,7 +78,7 @@ namespace ExamplePlugin
 
                 if (count > 0)
                 {
-                    body.AddTimedBuff(RoR2Content.Buffs.NoCooldowns, 6 + (4 * count), count);
+                    body.AddTimedBuff(RoR2Content.Buffs.NoCooldowns, 2 + count);
                 } 
             }
         }
