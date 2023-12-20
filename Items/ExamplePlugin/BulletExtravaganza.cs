@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using static R2API.RecalculateStatsAPI;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 namespace ExamplePlugin
 {
@@ -52,11 +53,25 @@ namespace ExamplePlugin
             myItemDef.deprecatedTier = ItemTier.Lunar;
 #pragma warning restore Publicizer001
 
+            CustomAssets customAssets = new CustomAssets();
 
 
-            myItemDef.pickupIconSprite = Addressables.LoadAssetAsync<Sprite>("RoR2/Base/Common/MiscIcons/texMysteryIcon.png").WaitForCompletion();
+            //Not working
+            if (CustomAssets.mainBundle == null)
+            {
+                Debug.LogError("AssetBundle is not initialized.");
+            }
+
+            Sprite sprite = CustomAssets.mainBundle.LoadAsset<Sprite>("BulletExtravaganza");
+
+            // Verifique se o sprite foi carregado com sucesso
+            if (sprite == null)
+            {
+                Debug.LogError("Failed to load sprite: " + "BulletExtravaganza");
+            }
+
+            myItemDef.pickupIconSprite = CustomAssets.mainBundle.LoadAsset<Sprite>("BulletExtravaganza.png");
             myItemDef.pickupModelPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Mystery/PickupMystery.prefab").WaitForCompletion();
-
 
             myItemDef.canRemove = true;
 
