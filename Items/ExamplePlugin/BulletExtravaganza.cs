@@ -38,6 +38,18 @@ namespace ExamplePlugin
 
             Log.Init(Logger);
 
+            //Carregar do 0 o assetbundle de novo :pensive:
+            var myLoadedAssetBundle
+            = AssetBundle.LoadFromFile(System.IO.Path.Combine(Application.streamingAssetsPath, "assetbundle"));
+            if (myLoadedAssetBundle == null)
+            {
+                Debug.Log("Failed to load AssetBundle!");
+                return;
+            }
+
+            var icon = myLoadedAssetBundle.LoadAsset<Sprite>("BulletExtravaganza.png");
+            Instantiate(icon);
+
 
             myItemDef = ScriptableObject.CreateInstance<ItemDef>();
 
@@ -56,7 +68,7 @@ namespace ExamplePlugin
 #pragma warning restore Publicizer001
 
 
-            myItemDef.pickupIconSprite = Addressables.LoadAssetAsync<Sprite>("RoR2/Base/Common/MiscIcons/texMysteryIcon.png").WaitForCompletion();
+            myItemDef.pickupIconSprite = icon;
             myItemDef.pickupModelPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Mystery/PickupMystery.prefab").WaitForCompletion();
 
             myItemDef.canRemove = true;
