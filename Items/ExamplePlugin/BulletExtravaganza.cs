@@ -7,6 +7,8 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using static R2API.RecalculateStatsAPI;
 using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
+using System.Reflection;
+using System.IO;
 
 namespace ExamplePlugin
 {
@@ -28,8 +30,8 @@ namespace ExamplePlugin
         public const string PluginName = "BulletExtravaganza";
         public const string PluginVersion = "1.0.0";
 
- 
         private static ItemDef myItemDef;
+
 
         public void Awake()
         {
@@ -53,24 +55,8 @@ namespace ExamplePlugin
             myItemDef.deprecatedTier = ItemTier.Lunar;
 #pragma warning restore Publicizer001
 
-            CustomAssets customAssets = new CustomAssets();
 
-
-            //Not working
-            if (CustomAssets.mainBundle == null)
-            {
-                Debug.LogError("AssetBundle is not initialized.");
-            }
-
-            Sprite sprite = CustomAssets.mainBundle.LoadAsset<Sprite>("BulletExtravaganza");
-
-            // Verifique se o sprite foi carregado com sucesso
-            if (sprite == null)
-            {
-                Debug.LogError("Failed to load sprite: " + "BulletExtravaganza");
-            }
-
-            myItemDef.pickupIconSprite = CustomAssets.mainBundle.LoadAsset<Sprite>("BulletExtravaganza.png");
+            myItemDef.pickupIconSprite = Addressables.LoadAssetAsync<Sprite>("RoR2/Base/Common/MiscIcons/texMysteryIcon.png").WaitForCompletion();
             myItemDef.pickupModelPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Mystery/PickupMystery.prefab").WaitForCompletion();
 
             myItemDef.canRemove = true;
@@ -90,34 +76,6 @@ namespace ExamplePlugin
             RecalculateStatsAPI.GetStatCoefficients += AddAttackSpeed;
         }
 
-   //     private void GlobalEventManager_onServerDamageDealt(DamageReport report)
-   //     {
-           
-
-   //         if (!report.attacker || !report.attackerBody)
-  //          {
-  //              return;
-  //          }
-            
-
-  //          var attackerCharacterBody = report.attackerBody;
-
-  //          if (attackerCharacterBody.inventory)
- //           {
- //               var count = attackerCharacterBody.inventory.GetItemCount(myItemDef.itemIndex);
-
-
- //               if (count > 0 && count < 5)
- //               {
-                    //1 BuffIndex e 2 float
- //                   attackerCharacterBody.attackSpeed += count * 2;
- //               }
-//                else if (count > 5){
-                    
-//                    attackerCharacterBody.attackSpeed += count * 3;
-//                }
- //           }
-//        }
 
         private void AddAttackSpeed(CharacterBody sender, StatHookEventArgs args)
         {
@@ -158,21 +116,5 @@ namespace ExamplePlugin
         }
 
 
-
-        //Remove later
-        private void Update()
-        {
-            // This if statement checks if the player has currently pressed F2.
-            if (Input.GetKeyDown(KeyCode.F4))
-            {
-                // Get the player body to use a position:
-                var transform = PlayerCharacterMasterController.instances[0].master.GetBodyObject().transform;
-
-                // And then drop our defined item in front of the player.
-
-                Log.Info($"Player pressed F2. Spawning our custom item at coordinates {transform.position}");
-                PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(myItemDef.itemIndex), transform.position, transform.forward * 20f);
-            }
-        }
     }
 }

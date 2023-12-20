@@ -109,23 +109,6 @@ namespace ExamplePlugin
         }
 
 
-
-
-        //Remove later
-        private void Update()
-            {
-                // This if statement checks if the player has currently pressed F2.
-                if (Input.GetKeyDown(KeyCode.F7))
-                {
-                    // Get the player body to use a position:
-                    var transform = PlayerCharacterMasterController.instances[0].master.GetBodyObject().transform;
-
-                    // And then drop our defined item in front of the player.
-
-                    Log.Info($"Player pressed F2. Spawning our custom item at coordinates {transform.position}");
-                    PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(myItemDef.itemIndex), transform.position, transform.forward * 20f);
-                }
-            }
         }
 
 

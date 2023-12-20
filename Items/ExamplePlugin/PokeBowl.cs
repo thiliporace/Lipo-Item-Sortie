@@ -106,19 +106,5 @@ namespace ExamplePlugin
         }
 
 
-
-
-        //Remove later
-        private void Update()
-        {
-
-            if (Input.GetKeyDown(KeyCode.F11))
-            {
-                var transform = PlayerCharacterMasterController.instances[0].master.GetBodyObject().transform;
-
-                Log.Info($"Player pressed F2. Spawning our custom item at coordinates {transform.position}");
-                PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(myItemDef.itemIndex), transform.position, transform.forward * 20f);
-            }
-        }
     }
 }
